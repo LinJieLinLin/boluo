@@ -1,0 +1,63 @@
+<section class="view-page theme-detail">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">第{{index}}楼</a>
+        </div>
+        <div class="m">
+            <img ng-hide="theme.uid==userData.id" src="image/icon/message_notice_icon.png" alt="" ng-click="accusationTheme()">
+            <img ng-show="theme.uid==userData.id" src="image/icon/message_delete_icon.png" alt="" ng-click="delteTheme()">
+        </div>
+    </header>
+    <main class="main reply-build">
+        <section class="post-bar-main">
+            <div class="show-head">
+                <div class="r-img f-l">
+                    <avatar url="picRoot + theme.avatar"></avatar>
+                </div>
+                <div class="f-l">
+                    <div class="t-name">{{theme.nickname}}</div>
+                    <div class="t-inf"><span ng-show="theme.dateline">{{theme.dateline|countTime}}前</span></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="reply-c">
+                <p>{{theme.content}}</p>
+                <div class="reply-cc" ng-repeat="r in replyList track by $index" ng-class="{'border-t1':$first}">
+                    <span ng-class="{'t-blue':theme.uid!=userData.id,'t-orange':theme.uid==userData.id}">{{r.nickname}}</span>:{{r.content}}
+                </div>
+            </div>
+        </section>
+        <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+            <div class="small-scale">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+            </div>
+        </div>
+        <div class="no-content" ng-if="scrollLoadingReady && !replyList.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+        <div ng-if="noMoreFlag && replyList.length" style="color:#999;padding:10px;text-align:center;">
+            没有更多~
+        </div>
+        <div class="end-h4"></div>
+    </main>
+    <div class="send-topic">
+        <div class="input">
+            <input type="text" ng-model="setToReplyData.content">
+            <button ng-click="setToReply()">回复</button>
+            <div class="upload-theme-img">
+                <img src="image/icon/message_photo_icon.png" alt="" ng-click="upload()">
+            </div>
+        </div>
+        <div class="recommend-team" ng-show="setToReplyData.picUrl.length">
+            <ul style="min-height:2rem;">
+                <li ng-repeat="pic in setToReplyData.picUrl track by $index" style="background-image: url('{{picRoot+pic}}')">
+                    <i class="del" ng-click="delPic($index)"></i>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

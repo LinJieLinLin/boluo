@@ -1,0 +1,144 @@
+<section class="view-page activity-detail">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            活动详情
+        </div>
+        <div ng-show="team.admin_id==user.id" class="m" ng-click="dropDown($event)">
+            +
+        </div>
+        <ul class="drop-down-menu" ng-show="showDropdown">
+            <li ng-click="edit($event)"><img src="/image/icon/activity_edit_icon.png" alt="">编辑</li>
+            <li ng-click="list($event)"><img src="/image/icon/activity_list_icon.png" alt="">名单</li>
+            <li ng-click="close($event)"><img src="/image/icon/activity_close_icon.png" alt="">关闭</li>
+        </ul>
+    </header>
+    <main class="main">
+        <section class="list-block" style="line-height:2;">
+            <div class="list-block-title team-info" style="line-height:1;">
+                <avatar url="picRoot + act.icon_pic"></avatar>
+                <div>
+                    <p class="name">{{act.team_name}}</p>
+                    <p class="time">{{act.dateline|countTime}}前</p>
+                </div>
+                <!-- <div class="tag">{{act.tag}}</div> -->
+            </div>
+            <div class="list-view">
+                活动名称：<span>{{act.name}}</span>
+            </div>
+            <div class="list-view">
+                活动地点：<span>{{act.place}}</span>
+            </div>
+            <div class="list-view">
+                活动时间：<span>{{act.start_time|time}} - {{act.end_time | time}}</span>
+            </div>
+            <div class="list-view">
+                报名期限：<span>{{act.enrollment_date | time}}</span>
+            </div>
+            <div class="list-view">
+                活动介绍：
+                <pre style="margin-top: 0.5rem;word-wrap:break-word;white-space: pre-wrap;line-height:2;">{{act.introduces}}</pre>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-view">
+                报名人数：<span>{{act.people_num}}</span>
+            </div>
+            <div class="list-view">
+                报名费用：<span>{{act.money}}</span>元
+            </div>
+            <div class="list-view">
+                活动类型：<span>{{act.type_content}}</span>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-view" ng-click="goToList()">
+                已报名人员（<span>{{act.members.length || 0}}</span>/<span>{{act.people_num}}</span>）
+                <button class="more" ng-show="team.admin_id==user.id">&gt;</button>
+            </div>
+            <div class="list-view">
+                <ul class="act-joined">
+                    <li ng-repeat="user in act.members">
+                        <avatar url="picRoot + user.avatar"></avatar>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-view">
+                活动图片
+            </div>
+            <div class="list-view">
+                <ul class="act-img" gallery list="act.pics" prefix="picRoot" key="big_pic">
+                    <li ng-repeat="img in act.pics track by $index"><img ng-src="{{picRoot + img.big_pic}}" alt=""></li>
+                </ul>
+            </div>
+        </section>
+        <section class="list-block" ng-hide="isJoined()">
+            <div class="list-block-title">
+                <button class="join-act" ng-click="showEnroll=true">我要报名</button>
+            </div>
+        </section>
+        <section ng-repeat="comment in comments" class="list-block topic-reply">
+            <div class="topic-user">
+                <avatar url="picRoot + comment.avatar"></avatar>
+                <div class="topic-user-info">
+                    <!-- <button class="reply-btn" ng-click="replyTopic(comment)"><img src="/image/icon/message_mess_icon.png" class="icon" alt=""></button> -->
+                    <p class="name">{{comment.nickname}}</p>
+                    <p class="topic-desc"><span class="topic-num">第{{$index + 1}}楼</span><span class="topic-time">{{comment.dateline|countTime}}</span>前</p>
+                    <div class="topic-content">
+                        {{comment.content}}
+                    </div>
+                    <!-- <ul class="topic-comment" ng-show="comment.comments.length">
+                        <li ng-repeat="c in comment.comments" ng-show="comment.showMore || (!comment.showMore && $index < 5)">
+                            <p>
+                                <span  class="comment-user">{{c.nickname}}</span>:<span>{{c.content}}</span>
+                            </p>
+                        </li>
+                        <a href="" ng-click="comment.showMore = true" ng-show="comment.comments.length > 5 && !comment.showMore" class="show-more-comment">查看更多回复...</a>
+                        <a href="" ng-click="comment.showMore = false" ng-show="comment.showMore && comment.comments.length>5" class="show-more-comment">折叠回复</a>
+                    </ul> -->
+                </div>
+            </div>
+        </section>
+        <div class="send-act-comment">
+            <input type="text" ng-model="reply">
+            <button ng-click="replyAct()">发送</button>
+        </div>
+    </main>
+</section>
+<section class="view-page activity-detail" ng-show="showEnroll">
+    <header class="header">
+        <div class="back" ng-click="showEnroll=false">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            填写报名资料
+        </div>
+    </header>
+    <main class="main enroll-info">
+        <section class="list-block">
+            <div class="list-view">
+                姓名：<span class="list-item-content"><input placeholder="请输入真实姓名" ng-model="e.name" type="text"></span>
+            </div>
+            <div class="list-view">
+                手机号码：<span class="list-item-content"><input placeholder="请输入手机号" ng-model="e.mobile" type="text"></span>
+            </div>
+            <div class="list-view">
+                微信：<span class="list-item-content"><input placeholder="选填" type="text" ng-model="e.we_chat"></span>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-block-title">
+                支付费用：<span class="enroll-money">{{act.money}}</span>
+            </div>
+        </section>
+        <div class="enroll-action">
+            <button ng-click="showEnroll=false;">取消</button>
+            <button ng-click="enroll()">确定</button>
+        </div>
+    </main>
+</section>
+<div ui-view style="z-index:100"></div>

@@ -1,0 +1,37 @@
+<section class="view-page team-detail" ng-class="{'is-joined': true}">
+    <main class="main user-detail-page user-setting" style="top: 0">
+        <header class="header" style="background: none;">
+            <div class="back" ng-click="backPage()">
+                <img src="image/icon/user_details_back.png">
+            </div>
+            <div class="n">
+            </div>
+            <div class="m team-info-btn">
+                <!-- <a href=""><img src="/image/icon/posts_alliance_icon.png" alt=""></a>
+                <a href=""><img src="/image/icon/posts_pk_icon.png" alt=""></a>
+                <a href=""><img src="/image/icon/posts_share_icon.png" alt=""></a> -->
+            </div>
+        </header>
+
+        <div class="cover" ng-style="coverBg">
+            <div class="team-detail">
+                <div class="team-info">
+                    <avatar url="picRoot + team.icon_pic"></avatar>
+                    <div>
+                        <p class="name">{{team.name}}</p>
+                        <p><span class="team-location"><img class="icon" src="/image/icon/posts_locate_icon.png" alt="">{{team.city_name}}</span><span class="team-num"><img class="icon" src="/image/icon/posts_menber_icon.png" alt="">{{team.member_num}}</span><span class="team-task"><img class="icon" src="/image/icon/posts_pos_icon.png" alt="">{{team.post_num}}</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="menu-list">
+            <li ng-style="navStyle" ng-class="{active: currentNav==nav.name}" ng-click="enterTab(nav)" ng-repeat="nav in navList">{{nav.name}}</li>
+        </ul>
+        <div ui-view></div>
+    </main>
+    <section class="team-action" ng-hide="hideActionBar || isTourist">
+        <button ui-sref="team.newActivity" ng-show="team.admin_id==user.id">发布活动</button>
+        <button ng-show="team.admin_id!=user.id&&!team.joined" ng-click="joinTeam()">加入团队</button>
+        <button ui-sref="team.newTopic">发帖子</button>
+    </section>
+</section>

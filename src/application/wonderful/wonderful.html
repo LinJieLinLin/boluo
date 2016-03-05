@@ -1,0 +1,28 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{title}}</a>
+        </div>
+    </header>
+    <div class="main fans-show-main">
+        <div class="part mg-b-0">
+            <div class="w">
+                <wonderful-list list="list"></wonderful-list>
+
+                <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+                    <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+                </div>
+                <div class="no-content" ng-if="scrollLoadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+                <div ng-if="noMoreFlag && list.length" style="color:#999;padding:10px;text-align:center;">
+                    没有更多~
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

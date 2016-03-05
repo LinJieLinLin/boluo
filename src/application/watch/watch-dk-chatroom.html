@@ -1,0 +1,30 @@
+<main class="chat-main">
+    <div class="chat-list">
+        <div class="item" ng-repeat="msg in msgList"  ng-class="{self: msg.isSelf, effect: msg.isEffect, live: msg.isLiveEffect}">
+            <dialog class="dialog">
+                <dt class="u-p" ng-click="showBar(msg, $event)">
+                    <img ng-src="{{msg.avatar}}" alt="">
+                </dt>
+                <dd class="c" ng-style="msg.style">
+                    <p class="name">{{msg.ext.nickname}}</p>
+                    <p class="time" ng-hide="msg.isEffect">{{msg.time}}</p>
+                    <div class="msg" ng-hide="msg.isEffect">{{msg.msg}}</div>
+                    <div class="msg" ng-show="msg.isEffect">
+                        {{msg.ext.magicDes}}
+                        <span class="msg-gift"><img ng-src="{{picRoot + msg.ext.magicPic}}" alt=""><span>x{{msg.ext.num}}</span></span>
+                    </div>
+                </dd>
+            </dialog>
+            <!-- 互动栏 -->
+            <div class="interactive-bar" ng-show="msg.showBar">
+                <div class="w" tabindex="-1">
+                    <a ng-click="atUser(msg, $event)">@TA</a>
+                    <a ng-click="sendGiftToUser(msg, $event)">送礼物</a>
+                    <a ng-click="useToolToUser(msg, $event)">用道具</a>
+                    <a ng-click="addFriend(msg, $event)">加好友</a>
+                    <a ng-click="getUserInfo(msg, $event)">查资料</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

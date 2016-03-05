@@ -1,0 +1,75 @@
+<div class="p-d-main">
+    <div class="p-d-header" alt="顶部栏"></div>
+    <div class="main-wrapper" ng-class="{fxFtBar: isDiscussTab(), fxNavBar: fxNavBar}">
+        <div class="preside">
+            <div class="t">
+                <h3 class="title">{{detailInfo.title}}</h3>
+            </div>
+            <!-- <h3 class="h">解说专家</h3> -->
+            <div class="w">
+                <div ng-repeat="item in detailInfo.commentator track by $index" ng-class="$index ? 'r' : 'l'">
+                    <div class="p">
+                        <img ng-src="{{item.avatar}}">
+                    </div>
+                    <div class="c">
+                        <p class="name">{{item.nickname}}</p>
+                        <p class="msg">{{item.introduction}}</p>
+                    </div>
+                    <button class="like-btn" ng-class="{active: item.isAuthorLike}" ng-click="authorLike(item)">{{item.likes || 0}}</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <nav class="p-d-nav" alt="导航栏">
+            <a class="sub-btn" ng-class="{active: !detailInfo.isFollow}" ng-click="follows()">
+                <img src="/image/icon/famous_book_icon.png">
+                <span ng-show="!detailInfo.isFollow">订阅频道</span>
+                <span ng-show="detailInfo.isFollow">取消订阅</span>
+            </a>
+            <a class="k" ng-repeat="item in navList" ng-class="{active: item.tab == curTab}" ng-click="toggleTab(item)">{{item.name}}</a>
+        </nav>
+        <v-discuss-tab ng-show="curTab == 'discuss'" alt="评论"></v-discuss-tab>
+        <v-related-tab ng-show="curTab == 'related'" alt="相关频道"></v-related-tab>
+    </div>
+
+    <!-- <footer class="p-footer-bar" ng-hide="editDiscussPublish()" alt="底部栏">
+        <div class="w">
+            <a class="playBtn">
+                <img src="/image/icon/footer-bar-play.png" ng-click="play()" ng-show="!playFlag">
+                <img src="/image/icon/footer-bar-pause.png" ng-click="pause()" ng-show="playFlag">
+            </a>
+            <div ng-repeat="item in detailInfo.commentator track by $index" ng-class="$index ? 'r u' : 'l u'">
+                <div class="p">
+                    <img ng-src="{{picRoot + item.avatar}}">
+                </div>
+                <div class="c">
+                    <p class="name">{{item.nickname}}</p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+
+    <div ng-if="isDiscussTab()" alt="评论操作栏">
+        <div alt="评论编辑栏">
+            <div class="discuss-form style-two">
+                <table width="100%">
+                    <tr>
+                        <td class="l">
+                            <span ng-click="sendGift()" alt="送礼物">
+                                <img src="/image/icon/chatroom_mall.png" width="35">
+                            </span>
+                        </td>
+                        <td>
+                            <div class="ew">
+                                <input type="searce" class="edit" id="discuss-form-edit" ng-model="commentContent" autocomplete="off" alt="编辑" placeholder="说点什么吧:)">
+                            </div>
+                        </td>
+                        <td class="r">
+                            <a class="send" ng-click="audioComment(commentContent)">评论</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

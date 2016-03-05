@@ -1,0 +1,59 @@
+<main class="activity-main">
+    <div class="part">
+        <div class="h-style-2">
+            <a class="more" ui-sref="myTeam">我的团队 <i>&gt;</i></a>
+            <a class="k">
+                <span>推荐</span>
+            </a>
+        </div>
+        <div class="w recommend-team">
+            <ul>
+                <li ui-sref="team.topic({id: team.sid, avatar: 0})" ng-repeat="team in recommendList">
+                    <avatar url="picRoot + team.pic"></avatar>
+                    <p>{{team.name}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <div class="h-style-2">
+            <a class="k">
+                <span>最新活动</span>
+            </a>
+        </div>
+        <div class="w latest-activity">
+            <ul>
+                <li ng-repeat="act in lastestAct" ng-click="enterOfficialAct(act)">
+                    <div class="act-head">
+                        <div class="act-avatar" style="background-image: url('{{picRoot + act.avatar}}')"></div>
+                        <div class="act-info">
+                            <p class="act-user">{{act.nickname}}</p>
+                            <p><span ng-hide="isOutDate(act.end_time)">活动倒计时：<span class="act-count-time">{{act.start_time |
+                             countTime}}</span></span><span ng-show="isOutDate(act.end_time)">已过期</span><span class="act-location">{{act.location}}</span></p>
+                        </div>
+                    </div>
+                    <div class="act-body">
+                        <img href="" class="act-cover" ng-src="{{picRoot + act.pic}}" />
+                        <p class="act-title">{{act.name}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="part">
+        <div class="w later-activity">
+            <ul>
+                <li ng-repeat="act in laterAct" ui-sref="team.activityDetail({id: act.tid, aid: act.aid, avatar: 0})">
+                    <div class="act-head">
+                        <p ng-hide="isOutDate(act.end_time)"><span>活动倒计时：<span class="act-count-time">{{act.start_time|countTime}}</span></span></p>
+                        <p ng-show="isOutDate(act.end_time)">已过期</p>
+                    </div>
+                    <div class="act-body">
+                        <img href="" class="act-cover" ng-src="{{picRoot + act.pic}}" />
+                        <p class="act-title">{{act.name}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>

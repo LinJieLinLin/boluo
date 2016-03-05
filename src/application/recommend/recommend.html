@@ -1,0 +1,71 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{title}}</a>
+        </div>
+    </header>
+    <main class="main recommend-wrapper">
+
+        <div class="headlines-list recommend-list">
+            <ul ng-repeat="item in list" ng-click="goToRecommendDetail(item)">
+                <li ng-class="'item news-type-'+ item.img_type">
+                    <div class="t-bar" ng-if="item.img_type > 1">
+                        <p class="title">{{item.Title}}</p>
+                    </div>
+                    <div ng-class="'img-bar img-len-'+ item.img_type">
+                        <div class="img" ng-repeat="img in item.images track by $index" ng-style="{backgroundImage:'url('+ img +'), url(/image/icon/auto_bolo_bg.png)'}">
+                            <span class="p-ic-span" ng-if="item.HasVideo"></span>
+                            <span class="v-ic-span" ng-if="!item.HasVideo && item.HasMp3"></span>
+                        </div>
+                    </div>
+                    <div class="m-bar" ng-if="item.img_type <= 1">
+                        <div class="title">{{item.Title}}</div>
+                        <!-- <div class="tntro" ng-bind-html="item.Desc"></div> -->
+                        <span class="time">{{item.PostTime | countTime}}前</span>
+                        <span class="tag-span" ng-if="item.Type==1">
+                            辣评
+                            <span class="tag">{{item.Tag}}</span>
+                        </span>
+                        <span class="tag-span style-2" ng-if="item.Type==2">
+                            前瞻
+                            <span class="tag">{{item.Tag}}</span>
+                        </span>
+                        <span class="vs">
+                            {{item.Views}}
+                            <img src="/image/icon/red_v_ic.png" alt="">
+                        </span>
+                    </div>
+                    <div class="b-bar" ng-if="item.img_type > 1">
+                        <span class="time">{{item.PostTime | countTime}}前</span>
+                        <span class="tag-span" ng-if="item.Type==1">
+                            辣评
+                            <span class="tag">{{item.Tag}}</span>
+                        </span>
+                        <span class="tag-span style-2" ng-if="item.Type==2">
+                            前瞻
+                            <span class="tag">{{item.Tag}}</span>
+                        </span>
+                        <span class="vs">
+                            {{item.Views}}
+                            <img src="/image/icon/red_v_ic.png" alt="">
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+            <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+        </div>
+        <div class="no-content" ng-if="scrollLoadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+        <div ng-if="noMoreFlag && list.length" style="color:#999;padding:10px;text-align:center;">
+            没有更多~
+        </div>
+    </main>
+</section>

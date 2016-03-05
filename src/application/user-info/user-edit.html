@@ -1,0 +1,82 @@
+<section class="view-page" ng-class="{ shrink : pcAct}">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            个人信息
+        </div>
+    </header>
+    <main class="main user-detail-page user-setting">
+
+        <section class="list-block">
+            <div class="list-block-title">
+            </div>
+            <div class="list-view setting-avatar" ng-click="selectAvatar()">
+                头像
+                <span class="list-item-content">
+                    <avatar url="user.avatar"></avatar>
+                </span>
+            </div>
+            <div class="list-view setting-user-name" ui-sref="user.edit.name({id: id})">
+                昵称
+                <span class="list-item-content">{{user.nickname}}</span>
+                <button class="more">&gt;</button>
+            </div>
+            <div class="list-view setting-signature" ui-sref="user.edit.signature({id: id})">
+                个性签名
+                <span class="list-item-content">{{user.signature}}</span>
+                <button class="more">&gt;</button>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-block-title">
+            </div>
+            <label for="sex" class="list-view">
+                性别
+                <span class="list-item-content">
+                    <select name="sex" id="sex" ng-model="user.sex">
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                    </select>
+                </span>
+            </label>
+            <div class="list-view setting-age">
+                年龄
+                <span class="list-item-content">
+                    {{user.age}}
+                </span>
+                <input class="user-age" type="date" ng-model="ageSelect">
+            </div>
+            <div class="list-view" ng-click="selectLocation()">
+                地区
+                <span class="list-item-content">{{user.location.city}}</span>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-block-title">
+                喜欢的球队
+            </div>
+            <div class="list-block-content" ui-sref="user.edit.fav-team({id: id})">
+                <ul class="fav-team">
+                    <li class="user-setting-item" ng-repeat="team in user.favTeam">{{team.name}}</li>
+                    <li ng-show="user.favTeam.length<3" class="user-setting-item">+</li>
+                </ul>
+                <button class="more">&gt;</button>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-block-title">
+                喜欢的球星
+            </div>
+            <div class="list-block-content" ui-sref="user.edit.fav-star({id: id})">
+                <ul class="fav-star">
+                    <li class="user-setting-item" ng-repeat="star in user.favStar">{{star.name}}</li>
+                    <li ng-show="user.favStar.length<3" class="user-setting-item">+</li>
+                </ul>
+                <button class="more">&gt;</button>
+            </div>
+        </section>
+    </main>
+</section>
+<div ui-view></div>

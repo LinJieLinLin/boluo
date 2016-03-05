@@ -1,0 +1,24 @@
+<main class="ta-video-main">
+    <div class="part choice-list">
+        <div class="list">
+            <div class="item" ng-repeat="item in list track by $index">
+                <a href="" ng-click="playToChoice(item, $index)">
+                    <div class="img" ng-style="{backgroundImage: 'url('+ (picRoot + item.cover) +')' }">
+                        <div class="mask-btn" ng-if="$index !== choicePlayIndex"></div>
+                    </div>
+                    <div class="c">
+                        <p class="title">{{item.matchname}}</p>
+                    </div>
+                </a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && !noScrollFnFlag">
+        <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+    </div>
+    <div class="no-content" ng-if="scrollLoadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+    <div ng-if="noMoreFlag && list.length" style="color:#999;padding:10px;text-align:center;">
+        没有更多~
+    </div>
+</main>

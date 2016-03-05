@@ -1,0 +1,32 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            我的消息
+        </div>
+        <div class="m" ng-click="delAll()">
+            清空
+        </div>
+    </header>
+    <main class="main" ng-click="hideDelete()">
+        <div class="msg-tab">
+            <a ng-class="{active: activeTab=='system'}" ng-click="activeTab='system'" href="">系统消息</a><a ng-class="{active: activeTab=='social'}" ng-click="activeTab='social'" href="">社交消息</a>
+        </div>
+        <div class="list-block">
+            <div class="list-block-title"></div>
+            <ul class="msg-list">
+                <li class="list-view" ng-swipe-left="msg.showDelete=true" ng-repeat="msg in msgList" ng-show="(activeTab=='system' && msg.type==0) || (activeTab=='social' && msg.type==1)">
+                    <avatar url="img"></avatar>
+                    <div class="msg-detail">
+                        <p class="msg-type" ng-show="msg.type==0">好友消息</p>
+                        <p class="msg-type" ng-show="msg.type==1">{{msg.fusername}}</p>
+                        <p>{{msg.message}}</p>
+                    </div>
+                    <button ng-class="{show: msg.showDelete}" ng-click="delMsg(msg, $index)" class="msg-delete">删除</button>
+                </li>
+            </ul>
+        </div>
+    </main>    
+</section>

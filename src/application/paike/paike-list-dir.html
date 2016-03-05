@@ -1,0 +1,13 @@
+<div class="list">
+    <div class="item style-2" ng-repeat="item in list">
+        <a ui-sref="watch.paike({vid: item.liveid})">
+            <div class="img" ng-style="{backgroundImage: 'url('+ (picRoot + item.cover) +')' }">
+                <span class="like" ng-class="{active: item.isLike}">{{item.likes}}</span>
+            </div>
+            <div class="c">
+                <div class="title">{{item.matchname}}</div>
+            </div>
+        </a>
+    </div>
+    <div class="clear"></div>
+</div>

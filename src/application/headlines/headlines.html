@@ -1,0 +1,42 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+    </header>
+    <main class="main headlines-wrapper">
+        <div class="headlines-list">
+            <ul ng-repeat="item in headlinesList" ng-click="gotoNewsDetail(item)">
+                <li ng-class="'item news-type-'+ item.DisplayMode">
+                    <div class="t-bar" ng-if="item.DisplayMode > 1">
+                        <span class="num">{{item.CommentCount}} 评论</span>
+                        <p class="title">{{item.Title}}</p>
+                    </div>
+                    <div ng-class="'img-bar img-len-'+ item.Imgs.length">
+                        <div class="img" ng-repeat="img in item.Imgs" ng-style="{backgroundImage:'url('+ img +'), url(/image/icon/auto_bolo_bg.png)'}"></div>
+                    </div>
+                    <div class="m-bar" ng-if="item.DisplayMode <= 1">
+                        <div class="title">{{item.Title}}</div>
+                        <div class="tntro">{{item.Intro}}</div>
+                    </div>
+                    <div class="b-bar">
+                        <span class="num" ng-if="item.DisplayMode <= 1">{{item.CommentCount}} 评论</span>
+                        <span class="color-orange">{{item.Source}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="perloader-dir static" ng-if="!noMoreFlag && loadingReady">
+            <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+        </div>
+        <div ng-if="noMoreFlag" class="no-content">
+            {{msg}}
+        </div>
+    </main>
+</section>

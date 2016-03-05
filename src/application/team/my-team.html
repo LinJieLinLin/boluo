@@ -1,0 +1,77 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">我的团队</a>
+        </div>
+        <div class="m" ui-sref="searchTeam">
+            搜索
+        </div>
+    </header>
+    <nav class="pineapple-nav" ng-init="curTab='团队'">
+        <a class="k" ng-click="curTab='团队'" ng-class="{active: curTab ==  '团队'}" >团队</a>
+        <a class="k" ng-click="curTab='人气'" ng-class="{active: curTab ==  '人气'}" >人气</a>
+    </nav>
+    <div class="pineapple-main my-team-main" ng-show="curTab=='团队'">
+        <div class="part my-team">
+            <div class="h-style-2">
+                <a class="more" ui-sref="createTeam">创建 <i>&gt;</i></a>
+                <a class="k">
+                    <span>我的团队</span>
+                </a>
+            </div>
+            <div class="w">
+                <ul>
+                    <li ng-repeat="team in myTeam" class="team-item" ui-sref="team.activity({id: team.tid, avatar: 0})">
+                        <avatar url="picRoot + team.pic"></avatar>
+                        <div class="team-info">
+                            <p class="team-name">{{team.name}}</p>
+                            <p><span class="team-num"><img src="/image/icon/myteam_peoples_icon.png" alt="">{{team.count}}</span><span class="team-location"><img src="/image/icon/myteam_position_icon.png" alt="">{{team.dname}}</span></p>
+                            <p class="team-last-act">最近活动：<span>{{team.new_activity}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="part joined-team">
+            <div class="h-style-2">
+                <a class="k">
+                    <span>已加入</span>
+                </a>
+            </div>
+            <div class="w">
+                <ul>
+                    <li ng-repeat="team in joinTeam" class="team-item" ui-sref="team.activity({id: team.tid, avatar: 0})">
+                        <avatar url="picRoot + team.pic"></avatar>
+                        <div class="team-info">
+                            <p class="team-name">{{team.name}}</p>
+                            <p><span class="team-num"><img src="/image/icon/myteam_peoples_icon.png" alt="">{{team.count}}</span><span class="team-location"><img src="/image/icon/myteam_position_icon.png" alt="">{{team.dname}}</span></p>
+                            <p class="team-last-act">最近活动：<span>{{team.new_activity}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pineapple-main my-team-main" ng-show="curTab=='人气'">
+        <div class="part hot-team">
+            <div class="w">
+                <ul>
+                    <li ng-repeat="team in hotTeam" class="team-item" ui-sref="team.activity({id: team.tid, avatar: 0})">
+                        <avatar url="picRoot + team.pic"></avatar>
+                        <div class="team-info">
+                            <p class="team-name">{{team.name}}</p>
+                            <p><span class="team-num"><img src="/image/icon/myteam_peoples_icon.png" alt="">{{team.count}}</span><span class="team-location"><img src="/image/icon/myteam_position_icon.png" alt="">{{team.dname}}</span></p>
+                            <p class="team-last-act">最近活动：<span>{{team.new_activity}}</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

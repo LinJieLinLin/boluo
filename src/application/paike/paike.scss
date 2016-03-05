@@ -1,0 +1,28 @@
+@import '../../style/common/var';
+@import '../../style/common/mixin';
+.paike-tab-nav {
+    height: $height-header-px - 10;
+    line-height: $height-header-px - 10;
+    position: absolute;
+    top: $height-header-px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: white;
+    border-bottom: 1px solid $color-bd-gray;
+    .k{
+        border-radius: 5px;
+        line-height:25px;
+        min-width:6rem;
+        margin:0 1rem;
+        display:inline-block;
+        &.active{
+            background:$color-bg-orange;
+            color:white;
+        }
+    }
+}
+
+.paike-tab-main {
+    top: $height-header-px * 2 - 10;
+}

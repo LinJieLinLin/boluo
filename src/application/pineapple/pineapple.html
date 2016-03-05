@@ -1,0 +1,20 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+    </header>
+    <nav class="pineapple-nav">
+        <a class="k" ng-repeat="item in navTab" ng-class="{active: curTab == item.tab }" ui-sref="{{item.sref}}">{{item.name}}</a>
+    </nav>
+    <div class="pineapple-main" ui-view></div>
+    <div class="write-theme" ng-show="curTab == 'postBar' && !isTourist">
+        <img src="image/icon/chatroom_input.png" alt="" ng-click="goPage('writeTheme')">
+    </div>
+</section>

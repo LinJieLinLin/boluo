@@ -1,0 +1,297 @@
+<div class="p-d-main">
+    <div class="p-d-header" alt="顶部栏">
+        <nav class="dk-d-nav" alt="导航栏">
+            <a class="k" ng-repeat="item in navList" ng-class="{active: item.tab == curTab}" ng-click="goToTab(item)">{{item.name}}</a>
+        </nav>
+    </div>
+    <div class="choose-team" ng-show="match.fans == 0" alt="选择团队">
+        <img src="/image/bg/chatroom_choose_item.png" alt="">
+        <div class="guest-team team" ng-click="chooseTeam(match.guestTeam)">
+            <img ng-src="{{picRoot + match.guestTeam.badge}}" alt="">
+            <p>{{match.guestTeam.name}}</p>
+        </div>
+        <div class="home-team team" ng-click="chooseTeam(match.homeTeam)">
+            <img ng-src="{{picRoot + match.homeTeam.badge}}" alt="">
+            <p>{{match.homeTeam.name}}</p>
+        </div>
+    </div>
+    <div class="buy-vip" ng-show="showBuyVip" alt="购买VIP">
+        <ul class="select-vip">
+            <li ng-click="selectVIP(item)" ng-repeat="item in match.privilege" ng-class="{active: selectedVIP.pid==item.pid}">{{item.price}}金菠萝</li>
+        </ul>
+        <div class="vip-desc">
+            <img src="/image/bg/privilege_bg_default.png" alt="">
+            <img style="position:absolute;top:-1.5rem;left:0;right:0;margin:auto;" ng-src="{{picRoot + (user.sex == 'male' ? selectedVIP.bg : selectedVIP.bg_f)}}" alt="">
+        </div>
+        <div class="vip-action">
+            <button ng-click="buyVipWrapper(false)">{{selectedVIP.refuse}}</button>
+            <button ng-click="buyVip()">{{user.sex == 'male' ? selectedVIP.accept : selectedVIP.accept_f}}</button>
+        </div>
+    </div>
+    <div class="vip-info" ng-class="{fxNavBar: fxNavBar()}" ng-show="!isVip && curTab == 'vip'" alt="VIP横幅">
+        <a href="" ng-click="buyVipWrapper(true)"><img class="enter-buy-img" src="/image/bg/privilege_vip_enter.png" alt=""></a>
+    </div>
+    <div class="vip-welcome" ng-class="{fxNavBar: fxNavBar()}" ng-show="showWelcome && curTab=='vip'" alt="VIP欢迎进场">
+        <img src="/image/bg/privilege_vip_greeting_boy.png" ng-show="user.sex == 'male'" alt="">
+        <img src="/image/bg/privilege_vip_greeting_girl.png" ng-show="user.sex != 'male'" alt="">
+    </div>
+    <div class="main-wrapper"  ng-style="chatroomBg" ng-class="{fxFtBar: fxFtBar(), fxNavBar: fxNavBar()}">
+        <div class="chat-main chat-list" ng-if="curTab=='chatroom' || curTab == 'vip'">
+            <div ng-show="!isVip && curTab == 'vip'" alt="VIP横幅占位符">
+                <img src="/image/bg/privilege_vip_enter.png" width="100%">
+            </div>
+            <div class="perloader-dir static perloader-up" ng-hide="noMoreData || perloaderHide || errMsg">
+                <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+            </div>
+            <div ng-show="errMsg" class="c-prompt-msg">
+                {{errMsg}}
+            </div>
+            <div class="item msg-{{msgList.length -1 - $index}}" ng-if="!msg.isHide" ng-repeat="msg in msgList track by msg.msg_id"  ng-class="{self: msg.isSelf, effect: msg.isEffect, live: msg.isLiveEffect, img: msg.isImg, 'send-gift-to-user': msg.isSendUserGift, 'vip-bubble': msg.isVipBubble}">
+                <dialog class="dialog">
+                    <dt class="u-p" ng-click="showBar(msg, $event)">
+                        <avatar url="avatar + msg.avatar"></avatar>
+                    </dt>
+                    <img class="bubble-crown" ng-src="{{msg.crown}}" ng-if="msg.isVipBubble && msg.crown" alt="">
+                    <dd class="c" ng-style="msg.style">
+                        <p class="name" ng-style="msg.textStyle">{{msg.ext.nickname}}</p>
+                        <p class="time" ng-hide="msg.isEffect">{{msg.time}}</p>
+                        <div class="msg" ng-hide="msg.isEffect">
+                            <pre ng-if="!msg.ext.showType" class="chat-msg pre-normal" ng-bind-html="msg.msg"></pre>
+                            <span ng-if="msg.isImg">
+                                <img big-img ng-src="{{msg.msg}}" class="chat-img-label" alt="">
+                            </span>
+                            <span ng-if="msg.isImgAndMsg">
+                                <p><img big-img ng-src="{{msg.ext.imgUrl}}" class="chat-img-label" alt=""></p>
+                                <pre class="chat-msg pre-normal" ng-bind-html="msg.msg"></pre>
+                            </span>
+                            <span ng-if="msg.isMp3">
+                                <audio ng-src="{{msg.msg}}" controls="controls" preload x-webkit-airplay="true" webkit-playsinline="true" style="width:100%;">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </span>
+                            <span ng-if="msg.isVideo">
+                                <video ng-src="{{msg.msg}}" controls="controls" preload x-webkit-airplay="true" webkit-playsinline="true" style="min-width:10rem;width:100%;height:8rem;"></video>
+                            </span>
+                        </div>
+                        <div class="msg" ng-show="msg.isEffect">
+                            <span ng-if="!msg.isSendUserGift">{{msg.ext.magicDes}}</span>
+                            <span ng-if="msg.isSendUserGift">
+                                <span>赠送给<span class="gift-target">@{{msg.ext.fnickname}}</span></span><br>
+                                <span>{{msg.ext.magicDes}}</span>
+                            </span>
+                            <span class="msg-gift"><img ng-src="{{picRoot + msg.ext.magicPic}}" alt=""><span>x{{msg.ext.num}}</span></span>
+                        </div>
+                    </dd>
+                </dialog>
+                <div class="interactive-bar" ng-show="msg.msg_id == msgShowBarId" alt="互动栏">
+                    <div class="w" tabindex="-1">
+                        <a ng-click="atUser(msg, $event)">@TA</a>
+                        <a ng-click="sendGiftToUser(msg, $event)">送礼物</a>
+                        <a ng-click="useToolToUser(msg, $event)">用道具</a>
+                        <a ng-click="addFriend(msg, $event)">加好友</a>
+                        <a ng-click="getUserInfo(msg, $event)">查资料</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-main chat-list chat-expert" ng-if="curTab=='expert'">
+            <div class="perloader-dir static perloader-up" ng-hide="noMoreData || perloaderHide || errMsg">
+                <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+            </div>
+            <div ng-show="errMsg" class="c-prompt-msg">
+                {{errMsg}}
+            </div>
+            <div class="item msg-{{msgList.length -1 - $index}}" ng-class="{img: i.isImg}" ng-repeat="i in msgList track by i.msg_id">
+                <dialog class="dialog">
+                    <dt class="u-p">
+                        <avatar url="avatar + i.avatar"></avatar>
+                    </dt>
+                    <dd class="c"  ng-style="msg.style">
+                        <p class="name">
+                            <span ng-style="msg.textStyle">{{i.ext.nickname}}</span>
+                            <span class="user-v">
+                                <img src="/image/icon/studio_oprah_talk_authenticate_icon.png" alt="">
+                                菠萝大咖
+                            </span>
+                            <span class="time">{{i.time}}</span>
+                        </p>
+
+                        <div class="msg">
+                            <pre ng-if="!i.ext.showType" class="chat-msg pre-normal" ng-bind-html="i.msg"></pre>
+                            <span ng-if="i.isImg">
+                                <img big-img ng-src="{{i.msg}}" class="chat-img-label" alt="">
+                            </span>
+                            <span ng-if="i.isImgAndMsg">
+                                <p><img big-img ng-src="{{i.ext.imgUrl}}" class="chat-img-label" alt=""></p>
+                                <pre class="chat-msg pre-normal" ng-bind-html="i.msg"></pre>
+                            </span>
+                            <span ng-if="i.isMp3">
+                                <audio ng-src="{{i.msg}}" controls="controls" preload x-webkit-airplay="true" webkit-playsinline="true" style="width:100%;">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </span>
+                            <span ng-if="i.isVideo">
+                                <video ng-src="{{i.msg}}" controls="controls" preload x-webkit-airplay="true" webkit-playsinline="true" style="min-width:10rem;width:100%;height:8rem;"></video>
+                            </span>
+                        </div>
+                        
+                        <div class="msg-action">
+                            <a href=""><img src="/image/icon/studio_like.png" alt=""><span>({{i.like}})</span></a>
+                            <!-- <a href="">回复</a> -->
+                        </div>
+                    </dd>
+                </dialog>
+            </div>
+        </div>
+        <main class="quiz-main" ng-if="curTab=='quiz'" alt="竞猜抢宝">
+            <iframe ng-src="{{getGuessSrc()}}" class="quiz-iframe" frameborder="0"></iframe>
+        </main>
+        <main class="choice-main" ng-if="curTab=='choice'" alt="精选节目">
+            <div ng-show="!choiceList.length && choiceListReady" class="c-prompt-msg">
+                {{choiceListMsg || '没有数据'}}
+            </div>
+            <div class="part choice-list">
+                <div class="list">
+                    <div class="item" ng-repeat="item in choiceList track by $index">
+                        <a href="" ng-click="playToChoice(item, $index)">
+                            <div class="img" ng-style="{backgroundImage: 'url('+ (picRoot + item.pic) +')' }">
+                                <div class="mask-btn" ng-if="$index !== choicePlayIndex"></div>
+                            </div>
+                            <div class="c">
+                                <p class="title">{{item.title}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <footer class="p-footer-bar" ng-hide="editChatPublish()" alt="底部栏">
+
+        <div class="w">
+            <a class="playBtn" ng-click="playVideo()">
+                <img src="/image/icon/footer-bar-play.png" ng-show="!vPlayFlag">
+                <img src="/image/icon/footer-bar-pause.png" ng-show="vPlayFlag">
+            </a>
+            <a class="star" ng-show="match.commentator[0]" ng-href="{{starHref}}&eid={{match.commentator[0].uid}}"><img src="/image/icon/live_ruler_ic.png" alt=""></a>
+            <a class="star right" ng-show="match.commentator[1]" ng-href="{{starHref}}&eid={{match.commentator[1].uid}}"><img src="/image/icon/live_ruler_ic.png" alt=""></a>
+            <div ng-show="match.commentator[0]" class="l u" ng-click="sendGiftToComm(match.commentator[0])">
+                <div class="p">
+                    <img ng-src="{{match.commentator[0].avatar}}" alt="">
+                    <span class="p-ic-gift"></span>
+                </div>
+                <div class="c">
+                    <p class="name">{{match.commentator[0].nickname}}</p>
+                </div>
+            </div>
+            <div ng-show="match.commentator[1]" class="r u" ng-click="sendGiftToComm(match.commentator[1])">
+                <div class="p">
+                    <img ng-src="{{match.commentator[1].avatar}}" alt="">
+                    <span class="p-ic-gift"></span>
+                </div>
+                <div class="c">
+                    <p class="name">{{match.commentator[1].nickname}}</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <div ng-if="isChatTab()" alt="聊天室操作栏">
+
+        <span ng-hide="editChatPublish()" ng-click="sendGift()" class="handsel-btn style-two" alt="送礼物">
+            <img src="/image/icon/chatroom_mall.png" alt="">
+        </span>
+
+        <label for="chat-form-edit" alt="编辑">
+            <span ng-click="togglePublishChat()" ng-hide="editChatPublish()" class="publish-btn style-two">
+                <img src="/image/icon/chatroom_input.png" alt="">
+            </span>
+        </label>
+        
+        <div ng-show="editChatPublish()" alt="聊天编辑栏">
+            <div class="chat-form-mask" ng-click="togglePublishChat()"></div>
+            <div class="chat-form">
+                <div class="t">
+                    <a href="" class="k" ng-repeat="item in chatFormNav" ng-class="{active: item.name == curFormTab}" ng-click="toggleFormNav(item)">{{item.name}}</a>
+                </div>
+                <table width="100%">
+                    <tr>
+                        <td ng-show="curFormTab == '名家提问'">
+                            <button class="nicname-btn" ng-repeat="item in match.commentator track by $index" ng-show="item.nickname == qaNicname.nickname" ng-click="toggleNickname($index)">{{item.nickname}}</button>
+                        </td>
+                        <td>
+                            <div class="ew">
+                                <input ng-model="chat.msg" type="text" class="edit" id="chat-form-edit" placeholder="说点什么吧:)">
+                            </div>
+                        </td>
+                        <td class="r">
+                            <span class="send" ng-click="sendMsg()">发送</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

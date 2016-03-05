@@ -1,0 +1,74 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="title">{{tabTitle}}</div>
+    </header>
+    <main class="main news-detail-main" ng-hide="showCommentsFlag">
+        <iframe ng-src="{{detailUrl}}" frameborder="0" class="detail-iframe"></iframe>
+    </main>
+    <main class="main comments-wrapper" ng-show="showCommentsFlag">
+        <div class="nd-like-bar">
+            <span class="btn" ng-click="newsPraise($event)" alt="赞">赞 {{commentsInfo.PraiseCount || 0}}</span>
+            <span class="btn" ng-click="newsTread($event)" alt="踩">踩 {{commentsInfo.TreadCount || 0}}</span>
+        </div>
+        <h3 class="top-bar">热门评论</h3>
+        <div class="discuss-list">
+            <div class="item" ng-repeat="item in commentList">
+                <div class="u-p">
+                    <avatar url="picRoot + item.HeadImgUrl"></avatar>
+                </div>
+                <div class="c">
+                    <p class="name">{{item.NickName}}</p>
+                    <div class="msg" style="margin-bottom:5px;">
+                        <span>{{item.Content}}</span>
+                        <span ng-if="item.CiteComment"> 回复 {{item.CiteComment.NickName}}：{{item.CiteComment.Content}}</span>
+                    </div>
+                    <div>
+                        <label for="chat-form-edit">
+                            <span class="reply" ng-click="reply(item)">回复</span>
+                        </label>
+                        <span class="time">{{item.CommentTime}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="perloader-dir static" ng-if="!noMoreFlag && loadingReady && showScrollLoadingFlag">
+                <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+            </div>
+            <div class="no-content" ng-show="loadingReady && !commentList.length">
+                赶紧抢沙发~
+            </div>
+            <div class="no-content" ng-show="loadingReady && noMoreFlag">
+                {{msg}}
+            </div>
+
+        </div>
+    </main>
+    <footer class="n-d-ft-bar" ng-hide="showEditFlag">
+        <label for="chat-form-edit">
+            <span class="edit-btn" ng-click="showEdit()">写评论</span>
+        </label>
+        <span class="" ng-click="showComments()">查看评论({{commentsInfo.CommentCount || 0}})</span>
+    </footer>
+    <footer ng-show="showEditFlag">
+        <div class="chat-form-mask" ng-click="showEdit()" style="background:rgba(0,0,0,.0)"></div>
+        <div class="discuss-form">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <div class="ew">
+                            <input ng-model="msgContent" type="text" class="edit" id="chat-form-edit" placeholder="{{replyNickName || '说点什么吧:'}}">
+                        </div>
+                    </td>
+                    <td class="r">
+                        <span class="send" ng-click="sendComment()">评论</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </footer>
+</section>

@@ -1,0 +1,28 @@
+<section class="view-page" style="z-index:100;">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            转让管理员权限
+        </div>
+    </header>
+    <main class="main">
+        <div class="list-block user-follow">
+            <div class="list-block-title">成员（<span>{{member.length || 0}}</span>）</div>
+            <div class="list-view user-item" ng-repeat="user in member">
+                <avatar url="picRoot + user.avatar"></avatar>
+                <div class="user-item-right">
+                    <p class="name">{{user.nickname}}</p>
+                    <p class="desc">
+                        {{user.dname}}
+                        <img ng-src="/image/icon/focus_{{user.sex == 1 ? 'boy' : 'girl'}}.png" alt="">
+                    </p>
+                </div>
+                <div class="list-item-content transfer-btn">
+                    <button ng-click="transfer(user)">转让</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</section>

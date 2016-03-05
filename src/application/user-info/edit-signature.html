@@ -1,0 +1,22 @@
+<section class="view-page" ng-class="{ shrink : pcAct}">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            个性签名
+        </div>
+        <div class="m" ng-click="done('signature')">
+            完成
+        </div>
+    </header>
+    <main class="main">
+        <div class="edit-input">
+            <textarea ng-model="user.signature" ng-keydown="type($event, 75, user.signature.length)"></textarea>
+            <span class="input-length">
+                <span>{{75 - (user.signature.length || 0)}}</span>/
+                <span>75</span>
+            </span>
+        </div>
+    </main>
+</section>

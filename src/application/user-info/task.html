@@ -1,0 +1,63 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            我的任务
+        </div>
+    </header>
+    <main class="main">
+        <div class="task-cover">
+            <p>做任务，赚菠萝豆&活跃值，马上提升您的尊贵级别</p>
+        </div>
+        <div class="list-block task-list">
+            <div class="list-block-title">
+                每日任务 <span>{{complete}}</span>/<span>{{taskDetail.length}}</span> 通过完成日常任务获得<span>(每日<span class="text-orange">0</span>点刷新日常任务)</span>
+            </div>
+<!--             <div class="daily-task">
+                <i class="icon"><img src="/image/icon/user_sidebar_star.png" alt=""></i>
+                <span>每日登陆签到</span>
+                <div class="list-item-content">
+                    <button class="qd-btn">签到</button>
+                </div>
+            </div> -->
+            <div class="list-view" ng-repeat="task in taskDetail">
+                <i class="icon"><img onerror="this.src='/image/icon/user_sidebar_star.png'" ng-src="{{task.pic}}" alt=""></i>
+                <span>{{task.tname}}</span>
+                <div class="list-item-content text-orange">
+                    <button ng-click="sign()" class="qd-btn" ng-show="task.tname=='签到' && !(+task.complete)">签到</button>
+                    <span ng-hide="task.tname=='签到' && !(+task.complete)">+<span>{{task.bonus}}</span></span>
+                </div>
+            </div>
+<!--             <div class="list-view">
+                <i class="icon"><img src="/image/icon/task_comment_icon.png" alt=""></i>
+                <span>发表一条评论</span>
+                <div class="list-item-content text-orange">
+                    +<span>555</span>
+                </div>
+            </div>
+            <div class="list-view">
+                <i class="icon"><img src="/image/icon/task_viewing_icon.png" alt=""></i>
+                <span>收看一期音视频节目</span>
+                <div class="list-item-content text-orange">
+                    +<span>53</span>
+                </div>
+            </div>
+            <div class="list-view">
+                <i class="icon"><img src="/image/icon/task_enteroom_icon.png" alt=""></i>
+                <span>进入一次直播间（含周中）</span>
+                <div class="list-item-content text-orange">
+                    +<span>333</span>
+                </div>
+            </div>
+            <div class="list-view">
+                <i class="icon"><img src="/image/icon/task_share_icon.png" alt=""></i>
+                <span>分享一条内容至微信、QQ、微博</span>
+                <div class="list-item-content text-orange">
+                    +<span>222</span>
+                </div>
+            </div> -->
+        </div>
+    </main>
+</section>

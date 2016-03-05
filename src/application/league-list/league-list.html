@@ -1,0 +1,60 @@
+<section class="view-page league">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+    </header>
+    <main class="main league-list-main">
+        <div class="l-tab-list">
+            <ul>
+                <li class="item" ng-repeat="item in tabList track by $index" ng-class="{active: $index == curTabIndex}" ng-click="toggleTab(item, $index)">
+                    <span>{{item.name}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="r-wrap">
+            <div class="union-lsit-style" ng-hide="curTabIndex">
+                <div class="item" ng-show="unionList.length">
+                    <h3 class="ht">{{tabList[0].name}}</h3>
+                    <div class="m">
+                        <div class="c" ng-class="{open: item.open}">
+                            <div class="block" ng-repeat="child in unionList" ui-sref="league({nid: child.nid,name:child.name})">
+                                <p class="pic"><img ng-src="{{picRoot + child.pic}}" alt=""></p>
+                                <p class="name">{{child.name}}</p>
+                            </div>
+                        </div>
+                        <div class="b">
+                            <span class="color-orange" ng-hide="item.open" ng-click="item.open = 1">展开</span>
+                            <span class="color-orange" ng-show="item.open" ng-click="item.open = 0">收起</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-content" ng-if="loadingReady && !unionList.length" style="padding:3rem 0">暂无数据</div>
+            </div>
+            <div class="union-lsit-style" ng-show="curTabIndex">
+                <div class="item" ng-repeat="item in unionList">
+                    <h3 class="ht">{{item.sname}}</h3>
+                    <div class="m">
+                        <div class="c" ng-class="{open: item.open}">
+                            <div class="block" ng-repeat="child in item.list" ui-sref="league({nid: child.nid,name:child.name})">
+                                <p class="pic"><img ng-src="{{picRoot + child.pic}}" alt=""></p>
+                                <p class="name">{{child.name}}</p>
+                            </div>
+                        </div>
+                        <div class="b">
+                            <span class="color-orange" ng-hide="item.open" ng-click="item.open = 1">展开</span>
+                            <span class="color-orange" ng-show="item.open" ng-click="item.open = 0">收起</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-content" ng-if="loadingReady && !unionList.length" style="padding:3rem 0">暂无数据</div>
+            </div>
+        </div>
+    </main>
+</section>

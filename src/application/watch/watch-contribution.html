@@ -1,0 +1,24 @@
+<main class="ta-contribution-main">
+    <div class="tab-child-tab" ng-if="detailInfo.commentator.length > 1">
+        <a href="" ng-repeat="item in detailInfo.commentator track by $index" class="k" ng-class="{active: currentTabIndex == $index}" ng-click="toggleContribution(item, $index)">{{item.nickname}}</a>
+    </div>
+    <div class="contribution-list">
+        <table width="100%">
+            <tr ng-repeat="item in list">
+                <td align="center">
+                    <div class="u-p">
+                        <img ng-src="{{item.avatar}}" alt="">
+                    </div>
+                </td>
+                <td>
+                    <p>{{item.nickname}}</p>
+                    <p class="color-gray">贡献值：<span class="color-orange">{{item.total}}金菠萝</span></p>
+                </td>
+                <td align="center">
+                    <span>图标</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="no-content" ng-if="loadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+</main>

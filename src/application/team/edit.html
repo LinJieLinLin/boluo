@@ -1,0 +1,61 @@
+<section class="view-page edit-team" style="z-index:100;">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            {{title}}
+        </div>
+        <div class="m" ng-click="save()">保存</div>
+    </header>
+    <main class="main">
+        <div class="list-view team-icon" ng-click="uploadAvatar()">
+            标志
+            <div class="list-item-content">
+                <avatar url="picRoot + team.icon_pic"></avatar>
+                &gt;
+            </div>
+        </div>
+        <div class="list-view">
+            名称
+            <span class="list-item-content">
+                <input type="text" placeholder="请输入团队名称" ng-model="team.name">
+            </span>
+        </div>
+        <div class="list-view">
+            短名字
+            <span class="list-item-content">
+                <input type="text" placeholder="不超过6个字符" ng-model="team.short_name" maxlength="6">
+            </span>
+        </div>
+        <div class="list-view">
+            支持
+            <span class="list-item-content">
+                <select name="team" id="team" ng-model="team.nid" style="border:1px solid #eee;">
+                    <option ng-repeat="n in teamList" value="{{n.nid}}">{{n.name}}</option>
+                </select>
+
+                <!-- <input type="text" placeholder="选择支持的球队（选填）"> -->
+            </span>
+        </div>
+        <div class="list-view" ng-click="setLocation()">
+            所在地
+            <span class="list-item-content">{{team.city_name}}&gt;</span>
+        </div>
+        <div class="list-view">
+            简介
+            <div>
+                <textarea placeholder="请输入团队简介" name="intro" id="team-intro" ng-model="team.introduction"></textarea>
+            </div>
+        </div>
+        <div class="list-view" ng-click="uploadBg()">
+            设计球队主页背景
+            <span class="list-item-content">
+                自定义 &gt;
+            </span>
+        </div>
+        <div class="list-view team-bg" ng-show="team.bg_pic">
+            <img ng-src="{{picRoot + team.bg_pic}}" alt="">
+        </div>
+    </main>
+</section>

@@ -1,0 +1,34 @@
+{
+  "name": "boluo",
+  "version": "1.0.0",
+  "description": "RCP front end project",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "browser-sync": "",
+    "del": "",
+    "gulp": "",
+    "gulp-autoprefixer": "",
+    "gulp-filter": "",
+    "gulp-if": "^2.0.0",
+    "gulp-inject": "",
+    "gulp-load-plugins": "",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-minify-html": "",
+    "gulp-ng-annotate": "",
+    "gulp-ng-template": "",
+    "gulp-sass": "",
+    "gulp-shell": "",
+    "gulp-sourcemaps": "",
+    "gulp-sync": "",
+    "gulp-uglify": "^1.5.1",
+    "gulp-useref": "^3.0.4",
+    "gulp.spritesmith": "^6.0.0",
+    "main-bower-files": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.coding.net:fengsb/boluo.git"
+  },
+  "author": "fengsb <fengsb@itdayang.com>",
+  "license": "ISC"
+}

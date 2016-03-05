@@ -1,0 +1,24 @@
+<div class="team-topic">
+    <section class="list-block" ng-repeat="topic in topicList">
+        <div class="list-view"  ui-sref="team.topicDetail({tid: topic.sid})">
+            <div class="topic-user">
+                <avatar url="picRoot + topic.avatar"></avatar>
+                <div class="topic-user-info">
+                    <p class="name">{{topic.nickname}}</p>
+                    <p class="topic-desc"><span class="topic-time">{{topic.dateline|countTime}}</span>前<span class="topic-location">{{topic.location}}</span></p>
+                </div>
+            </div>
+            <p class="topic-title">{{topic.title}}</p>
+            <pre class="topic-excerpt list-s" ng-bind-html="topic.content"></pre>
+            <ul class="act-img" gallery list="topic.pic" prefix="picRoot" ng-show="topic.pic.length">
+                <li ng-repeat="img in topic.pic track by $index" style="background-image: url('{{picRoot + img}}')"></li>
+            </ul>
+            <ul class="topic-tag">
+                <li ng-repeat="tag in topic.tags">{{tag}}</li>
+            </ul>
+            <div class="comment-content">
+                <button class="topic-comment"><img src="/image/icon/message_mess_icon.png" class="icon" alt="">{{topic.reply_num}}</button>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,42 @@
+<section class="view-page theme-detail">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">第{{index}}楼</a>
+        </div>
+        <div class="m">
+            <img ng-hide="active.uid==userData.id" src="image/icon/message_notice_icon.png" alt="" ng-click="accusationActive()">
+            <img ng-show="active.uid==userData.id" src="image/icon/message_delete_icon.png" alt="" ng-click="delteActive()">
+        </div>
+    </header>
+    <main class="main reply-build">
+        <section class="post-bar-main">
+            <div class="show-head">
+                <div class="r-img f-l">
+                    <img ng-src="{{picRoot + active.avatar}}" alt="">
+                </div>
+                <div class="f-l">
+                    <div class="t-name">{{active.nickname}}</div>
+                    <div class="t-inf"><span ng-show="active.dateline">{{active.dateline|countTime}}前</span></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="reply-c">
+                <p>{{active.content}}</p>
+                <div class="reply-cc" ng-repeat="r in commentsList track by $index" ng-class="{'border-t1':$first}">
+                    <span ng-class="{'t-blue':active.uid!=userData.id,'t-orange':active.uid==userData.id}">{{r.nickname}}</span>:{{r.content}}
+                </div>
+            </div>
+        </section>
+        <div class="end-h4"></div>
+    </main>
+    <div class="send-topic">
+        <input type="text" ng-model="setToCommentData.content">
+        <button ng-click="setToComment()">回复</button>
+    </div>
+</section>

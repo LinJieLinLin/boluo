@@ -1,0 +1,53 @@
+<div class="p-d-main">
+    <div class="p-d-header" alt="顶部栏"></div>
+    <div class="main-wrapper" ng-class="{fxFtBar: isDiscussTab(), fxNavBar: fxNavBar}">
+        <div class="anchor">
+            <div class="w">
+                <div class="l" ng-repeat="item in detailInfo.commentator track by $index">
+                    <div class="p">
+                        <img ng-src="{{item.avatar}}">
+                        <span class="name">{{item.nickname}}</span>
+                    </div>
+                    <div class="c">
+                        <span class="props-block" ng-repeat="item in detailInfo.fansShowMagicReceive">
+                            <div class="ic"><img ng-src="{{picRoot + item.pic}}" alt=""></div>
+                            <span class="num">{{item.total}}</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <nav class="p-d-nav-2" alt="导航栏">
+            <a class="k" ng-repeat="item in navList" ng-class="{active: item.tab == curTab}" ng-click="toggleTab(item)">{{item.name}}</a>
+        </nav>
+        <v-fans-show-discuss-tab ng-show="curTab == 'discuss'" alt="评论"></v-fans-show-discuss-tab>
+        <v-ta-video-tab ng-show="curTab == 'ta-video'" alt="TA的视频"></v-ta-video-tab>
+        <v-ta-atlas-tab ng-show="curTab == 'ta-atlas'" alt="TA的图集"></v-ta-atlas-tab>
+        <v-contribution-tab ng-show="curTab == 'contribution'" alt="贡献榜"></v-contribution-tab>
+    </div>
+
+    <div ng-if="isDiscussTab()" alt="评论操作栏">
+        <div alt="评论编辑栏">
+            <div class="discuss-form style-two">
+                <table width="100%">
+                    <tr>
+                        <td class="l">
+                            <span ng-click="sendGift()" alt="送礼物">
+                                <img src="/image/icon/chatroom_mall.png" width="35">
+                            </span>
+                        </td>
+                        <td>
+                            <div class="ew">
+                                <input type="searce" class="edit" id="discuss-form-edit" ng-model="commentContent" autocomplete="off" alt="编辑" placeholder="说点什么吧:)">
+                            </div>
+                        </td>
+                        <td class="r">
+                            <a class="send" ng-click="fansShowComment(commentContent)">评论</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

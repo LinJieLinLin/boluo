@@ -1,0 +1,30 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            我的<span>{{type}}</span>
+        </div>
+    </header>
+    <main class="main">
+        <div class="search-input">
+            <input type="text" ng-model="searchUser" placeholder="搜索">
+        </div>
+        <ul class="list-block user-follow">
+            <li ng-repeat="follow in list|filter:searchUser" class="list-view">
+                <avatar url="follow.avatar"></avatar>
+                <div class="follow-detail">
+                    <p class="follow-name">{{follow.nickname}}</p>
+                    <p class="follow-intro">
+                        <span>{{follow.location}}</span>
+                        <img ng-src="/image/icon/focus_{{follow.sex == 1 ? 'boy' : 'girl'}}.png" alt="">
+                    </p>
+                </div>
+                <div class="list-item-content">
+                    <button class="add-friend-btn" ui-sref="user.addFriend({id: id, target: follow.uid})">+</button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</section>

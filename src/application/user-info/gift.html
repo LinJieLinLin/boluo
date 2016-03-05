@@ -1,0 +1,22 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            {{type}}礼物
+        </div>
+    </header>
+    <main class="main">
+        <section class="list-block gift-detail">
+            <div class="list-block-title"></div>
+            <ul class="recieve-gift">
+                <li class="list-view" ng-repeat="gift in giftList">
+                    <img ng-src="{{picRoot + gift.pic}}" alt="">
+                    <span>{{gift.name}}</span>
+                    <span class="list-item-content">库存 {{gift.num}}</span>
+                </li>
+            </ul>
+        </section>
+    </main>
+</section>

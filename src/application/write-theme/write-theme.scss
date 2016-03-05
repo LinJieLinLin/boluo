@@ -1,0 +1,116 @@
+@import '../../style/common/var';
+@import '../../style/common/mixin';
+$pineappleNavHeight: $height-header-px - 10px;
+.write-theme {
+    main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: $height-header-px;
+        // height: $pineappleNavHeight;
+    }
+    .m-tlr {
+        padding: 0.68rem 0.68rem 0 0.68rem;
+    }
+    .p-r {
+        position: relative;
+    }
+    .p-f {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: $color-bg-light-gray;
+    }
+    button {
+        min-width: 4rem;
+        border: none;
+        border-radius: 1rem;
+        padding: 0.2rem 0.5rem 0.1rem 0.5rem;
+        background-color: $color-bg-white;
+        color: $color-text-minor;
+        img {
+            height: 1rem;
+            vertical-align: bottom;
+        }
+    }
+    .text-orange {
+        color: $color-text-orange;
+    }
+    .m {
+        color: #670E00;
+        font-size: 1rem;
+        line-height: $height-header-px;
+    }
+    .theme {
+        margin-top: 0.2rem;
+        font-size: 1rem;
+        input {
+            background-color: $color-bg-light-gray;
+            border-color: $color-bd-gray;
+            border-style: solid;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px;
+            width: 100%;
+            font-size: 1rem;
+            padding: 0.6rem 0.3rem;
+        }
+        textarea {
+            background-color: $color-bg-light-gray;
+            width: 100%;
+            padding: 0.6rem 0.3rem;
+            border: none;
+            font-size: 1rem;
+        }
+        .text-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1rem;
+            padding: 0.6rem 0.3rem;
+            @extend .text-orange;
+        }
+    }
+    .m-tb {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    .add-pic {
+        img {
+            height: 2.5rem;
+        }
+    }
+    .pid-line {
+        width: 100%;
+        border-top: 1px solid $color-bd-gray;
+    }
+    .recommend-team {
+        margin: 0;
+        position: relative;
+        li {
+            width: 27%;
+            margin-left: 3%;
+            margin-right: 3%;
+            margin-top: 0.5rem;
+            max-height: 7rem;
+            position: relative;
+            .del {
+                position: absolute;
+                top: -0.4rem;
+                right: -0.3rem;
+                height: 1rem;
+                width: 1rem;
+                background-image: url('/image/icon/message_del_icon.png');
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}

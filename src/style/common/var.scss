@@ -1,0 +1,40 @@
+@import './color';
+
+// 文字部分颜色
+$color-text-primary   : map-get($color-gray, 800);
+$color-text-gray5     : map-get($color-gray, 500);
+$color-text-minor     : map-get($color-gray, 700);
+$color-text-orange3   : map-get($color-orange, 300);
+$color-text-orange    : map-get($color-orange, 500);
+$color-text-white     : $color-white;
+$color-text-blue      : map-get($color-blue, 400);
+$color-text-red       : map-get($color-red, 400);
+$color-text-black     : map-get($color-gray, 1000);
+
+// 背景部分颜色
+$color-bg-orange      : map-get($color-orange, 500);
+$color-bg-light-gray  : map-get($color-gray, 300);
+$color-bg-gray        : map-get($color-gray, 400);
+$color-bg-blue        : map-get($color-blue, 400);
+$color-bg-red         : map-get($color-red, 300);
+$color-bg-green       : map-get($color-green, 400);
+$color-bg-cyan        : map-get($color-cyan, 400);
+$color-bg-white       : $color-white;
+$color-bg-black       : map-get($color-gray, 1000);
+$color-bg-yellow       : map-get($color-orange, 700);
+
+// 边框部分颜色
+$color-bd-orange      : map-get($color-orange, 500);
+$color-bd-dark-orange : map-get($color-orange, 900);
+$color-bd-white       : $color-white;
+$color-bd-light-gray  : map-get($color-gray, 300);
+$color-bd-gray        : map-get($color-gray, 400);
+
+// 内填充
+$inner-width-rem      : 0.68rem;
+$inner-width-px       : 12px;
+
+// 高度
+$height-header-px     : 43px;
+$height-nav-px        : 38px;
+$height-video-rem     : 11.2rem;

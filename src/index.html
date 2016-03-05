@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="screen-orientation"content="portrait">
+    <meta name="x5-orientation"content="portrait">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>菠萝球迷圈</title>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <style>
+    .ng-cloak{display:none;}
+    .to-start {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #F8AF24;
+        overflow: hidden;
+        z-index: 100;
+    }
+    </style>
+    <script>
+    // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    </script>
+</head>
+
+<body ng-controller="mainCtrl" class="ng-cloak" ng-class="{ ovh : pcAct }">
+
+    <section class="to-start" style="background:white;">
+        <!-- <img src="./image/start/001.jpg" width="100%" alt=""> -->
+    </section>
+
+    <div ui-view></div>
+    <!-- build:css(./) style/vendor.min.css -->
+    <!-- bower:css -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <!-- build:css style/bundle.min.css -->
+    <link rel="stylesheet" href="style/app.css">
+
+    <!-- directive css -->
+    <link rel="stylesheet" href="directive/side-bar/side-bar.css">
+    <link rel="stylesheet" href="directive/send-gift/send-gift.css">
+    <link rel="stylesheet" href="directive/confirm/confirm.css">
+    <link rel="stylesheet" href="directive/subscription/subscription.css">
+
+    <!-- application css -->
+    <link rel="stylesheet" href="application/landing/landing.css">
+    <link rel="stylesheet" href="application/user-info/user-info.css">
+    <link rel="stylesheet" href="application/watch/watch.css">
+    <link rel="stylesheet" href="application/headlines/headlines.css">
+    <link rel="stylesheet" href="application/pineapple/pineapple.css">
+    <link rel="stylesheet" href="application/fans-show/fans-show.css">
+    <link rel="stylesheet" href="application/post-bar/post-bar.css">
+    <link rel="stylesheet" href="application/activity/activity.css">
+    <link rel="stylesheet" href="application/wonderful/wonderful.css">
+    <link rel="stylesheet" href="application/paike/paike.css">
+    <link rel="stylesheet" href="application/atlas/atlas.css">
+    <link rel="stylesheet" href="application/team/team.css">
+    <link rel="stylesheet" href="application/photoswipe/photoswipe.css">
+    <link rel="stylesheet" href="application/write-theme/write-theme.css">
+    <link rel="stylesheet" href="application/league/league.css">
+    <link rel="stylesheet" href="application/league-list/league-list.css">
+    <link rel="stylesheet" href="application/recommend/recommend.css">
+    <!-- endbuild -->
+
+    <!-- build:js(./) script/vendor.min.js -->
+    <!-- bower:js -->
+    <!-- endinject -->
+    <script type="text/javascript" src="/bower_components/moment/locale/zh-cn.js"></script>
+    <script type="text/javascript" src="/bower_components/socket.io-client/socket.io.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- build:js script/bundle.min.js -->
+    <script type="text/javascript" src="application/template.js"></script>
+    <script type="text/javascript" src="application/app.js"></script>
+
+    <!-- directive js -->
+    <script type="text/javascript" src="directive/side-bar/side-bar.js"></script>
+    <script type="text/javascript" src="directive/send-gift/send-gift.js"></script>
+    <script type="text/javascript" src="directive/avatar/avatar.js"></script>
+    <script type="text/javascript" src="directive/perloader/perloader.js"></script>
+    <script type="text/javascript" src="directive/tags/tags-part.js"></script>
+    <script type="text/javascript" src="directive/list/list.js"></script>
+    <script type="text/javascript" src="directive/subscription/subscription.js"></script>
+    <script type="text/javascript" src="directive/own/own.js"></script>
+    <script type="text/javascript" src="directive/confirm/confirm.js"></script>
+    <script type="text/javascript" src="directive/show-img/show-img.js"></script>
+    <script type="text/javascript" src="directive/location/location.js"></script>
+    <script type="text/javascript" src="directive/gallery/gallery.js"></script>
+
+    <!-- service js -->
+    <script type="text/javascript" src="service/upload/upload.js"></script>
+
+
+
+    <!-- application js -->    
+    <script type="text/javascript" src="application/main/main.js"></script>
+    <script type="text/javascript" src="application/landing/landing.js"></script>
+    <script type="text/javascript" src="application/user-info/user-info.js"></script>
+    <script type="text/javascript" src="application/watch/watch.js"></script>
+    <script type="text/javascript" src="application/headlines/headlines.js"></script>
+    <script type="text/javascript" src="application/pineapple/pineapple.js"></script>
+    <script type="text/javascript" src="application/fans-show/fans-show.js"></script>
+    <script type="text/javascript" src="application/post-bar/post-bar.js"></script>
+    <script type="text/javascript" src="application/activity/activity.js"></script>
+    <script type="text/javascript" src="application/wonderful/wonderful.js"></script>
+    <script type="text/javascript" src="application/paike/paike.js"></script>
+    <script type="text/javascript" src="application/atlas/atlas.js"></script>
+    <script type="text/javascript" src="application/team/team.js"></script>
+    <script type="text/javascript" src="application/photoswipe/photoswipe.js"></script>
+    <script type="text/javascript" src="application/write-theme/write-theme.js"></script>
+    <script type="text/javascript" src="application/league/league.js"></script>
+    <script type="text/javascript" src="application/league-list/league-list.js"></script>
+    <script type="text/javascript" src="application/recommend/recommend.js"></script>
+
+    <!-- endbuild -->
+</body>
+
+</html>

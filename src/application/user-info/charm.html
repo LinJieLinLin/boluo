@@ -1,0 +1,57 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            魅力值指数
+        </div>
+    </header>
+    <main class="main">
+        <div class="charm-cover">
+            <avatar url="user.avatar"></avatar>
+            <div class="charm-info">
+                <p>魅力值指数</p>
+                <p class="charm-num">{{charmDetail.num}}</p>
+            </div>
+        </div>
+        <section class="list-block charm-detail">
+            <div class="list-view">
+                新增关注
+                <span class="list-item-content">
+                    获得 <span>{{charmDetail.nFollows}}</span>
+                </span>
+            </div>
+            <div class="list-view">
+                新增粉丝
+                <span class="list-item-content">
+                    获得 <span>{{charmDetail.nFans}}</span>
+                </span>
+            </div>
+            <div class="list-view">
+                新增好友
+                <span class="list-item-content">
+                    获得 <span>{{charmDetail.nFriends}}</span>
+                </span>
+            </div>
+            <div class="list-view">
+                赠送用户礼品
+                <span class="list-item-content">
+                    获得 <span>{{charmDetail.nMagics}}</span>
+                </span>
+            </div>
+        </section>
+        <section class="list-block charm-detail">
+            <div class="list-block-title"></div>
+            <div class="list-view">
+                <ul class="recieve-gift">
+                    <li ng-repeat="gift in giftList">
+                        <img ng-src="{{picRoot + gift.pic}}" alt="">
+                        <p>{{gift.name}}</p>
+                        <p class="gift-num">{{gift.num}}</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</section>

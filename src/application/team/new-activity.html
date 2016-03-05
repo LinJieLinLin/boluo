@@ -1,0 +1,91 @@
+<section class="view-page create-activity">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            活动管理
+        </div>
+        <div class="m" ng-click="newAct()">
+            保存
+        </div>
+    </header>
+    <main class="main">
+        <section class="list-block">
+            <div class="list-view">
+                活动名称：
+                <span class="list-item-content">
+                    <input type="text" ng-model="act.name" placeholder="请输入活动名称">
+                </span>
+            </div>
+            <div class="list-view" ng-click="chooseLocation()">
+                活动地区：<span class="list-item-content">{{act.cityname}}&gt;</span>
+            </div>
+            <div class="list-view">
+                活动地点：
+                <span class="list-item-content">
+                    <input type="text" ng-model="act.place" placeholder="请输入活动地点">
+                </span>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-view">
+                报名人数：
+                <span class="list-item-content">
+                    <input type="text" ng-model="act.people_num" placeholder="不填则不限制人数">
+                </span>
+            </div>
+            <div class="list-view">
+                报名费用：
+                <span class="list-item-content">
+                    <input type="text" ng-model="act.money" placeholder="不填则免费">
+                </span>
+            </div>
+        </section>
+        <section class="list-block">
+            <label for="stop-date" class="list-view">
+                截止报名：
+                <span class="list-item-content">
+                    <input id="stop-date" type="datetime-local" ng-model="act.enrollment_date_d">
+                </span>
+            </label>
+            <label for="start-date" class="list-view">
+                活动开始：
+                <span class="list-item-content">
+                    <input id="start-date" type="datetime-local" ng-model="act.start_time_d">    
+                </span>
+            </label>
+            <label for="end-date" class="list-view">
+                活动结束：
+                <span class="list-item-content">
+                    <input id="end-date" type="datetime-local" ng-model="act.end_time_d">
+                </span>
+            </label>
+        </section>
+        <section class="list-block">
+            <div class="list-view">
+                活动类型：
+                <span class="list-item-content">
+                    <input type="text" ng-model="act.type_content" placeholder="选填">
+                </span>
+            </div>
+            <div class="list-view">
+                活动介绍：
+                <div><textarea name="" placeholder="请输入备注信息" ng-model="act.introduces" id="" cols="30" rows="10"></textarea></div>
+                <div class="img">
+                    <button class="upload-btn" ng-click="upload()" ng-hide="uploading">
+                        +
+                    </button>
+                    <button class="upload-btn" style="background-color: #eee;position: relative;" ng-show="uploading">
+                        <perloader-dir show="true"></perloader-dir>
+                    </button>
+                    <span class="img-item" ng-repeat="pic in picList track by $index">
+                        <button ng-click="deleteImg(pic)" class="delete-btn">&times;</button>
+                        <img ng-src="{{picRoot + pic.url}}"  alt="">
+                    </span>
+                </div>
+                <p class="warn">*第一张图片将作为活动封面，必须上传至少一张图片</p>
+            </div>
+        </section>
+    </main>
+</section>

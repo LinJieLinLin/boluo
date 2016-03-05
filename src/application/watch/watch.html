@@ -1,0 +1,56 @@
+<section class="view-page">
+    <div class="player-view">
+        <div class="show-score-w" ng-show="showScore || !video.url">
+            <div class="back" ng-click="backPage()">
+                <img src="image/icon/fans_room_back.png" width="100%">
+            </div>
+            <div class="match-score" ng-style="scoreBg">
+                <div class="wrapper" ng-show="match.homeTeam && match.guestTeam">
+                    <span>{{match.matchScore.HScore}}</span>:<span>{{match.matchScore.AScore}}</span>
+                </div>
+            </div>
+            <p class="online-member" ng-show="liveRoomFlag"><img src="image/icon/myteam_peoples_icon.png" alt="">{{match.membernum}}</p>
+            <div class="switch-audio" ng-show="liveRoomFlag && video.url">
+                <img src="image/icon/fans_room_radio.png" width="100%" ng-click="showScore=false" alt="">
+            </div>
+        </div>
+        <div class="video-control" alt="菠萝视频控制器">
+            <div class="back" ng-click="backPage()">
+                <img src="image/icon/fans_room_back.png" width="100%">
+            </div>
+            <div class="like" ng-click="likeVideo()" ng-if="!likeVideoLock">
+                <img src="image/icon/iconfont-like.png" width="100%" ng-if="!detailInfo.isLike">
+                <img src="image/icon/iconfont-like1.png" width="100%" ng-if="detailInfo.isLike">
+            </div>
+            <div ng-hide="!video.url">
+                <div class="perloader-mask">
+                    <div class="preloader-scale">
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+                </div>
+                <p class="match-detail" ng-show="liveRoomFlag && match.homeTeam && match.guestTeam">
+                    <span>{{match.homeTeam.name}}</span> <span>{{match.matchScore.HScore}}</span>
+                     : 
+                    <span>{{match.matchScore.AScore}}</span> <span>{{match.guestTeam.name}}</span>
+                </p>
+                <p class="online-member" ng-show="liveRoomFlag"><img src="image/icon/myteam_peoples_icon.png" alt="">{{match.membernum}}</p>
+                <div class="switch-audio" ng-show="liveRoomFlag">
+                    <img src="image/icon/studio_sound.png" width="100%" ng-click="showScore=true" alt="">
+                </div>
+                <div class="play">
+                    <img src="image/icon/fans_room_play.png" width="100%" ng-click="play()" ng-show="!playFlag">
+                    <img src="image/icon/fans_room_pause.png" width="100%" ng-click="pause()" ng-show="playFlag">
+                </div>
+                <div class="max">
+                    <img src="image/icon/fans_room_max.png" width="100%" ng-click="fullScreen()">
+                </div>
+                <div class="play-progress" ng-hide="liveChatLock">
+                    <span class="p"></span>
+                    <a class="k"></a>
+                </div>
+            </div>
+        </div>
+        <div class="video-container" id="video-container"></div>
+    </div>
+    <div ui-view></div>
+</section>

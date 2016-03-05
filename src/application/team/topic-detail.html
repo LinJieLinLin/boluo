@@ -1,0 +1,54 @@
+<section class="view-page topic-detail">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            帖子详情
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-topic">
+            <div class="topic-user">
+                <avatar url="picRoot + topic.avatar"></avatar>
+                <div class="topic-user-info">
+                    <p class="name">{{topic.nickname}}</p>
+                    <p class="topic-desc"><span class="topic-time">{{topic.dateline|countTime}}</span>前<span class="topic-location">{{topic.location}}</span></p>
+                </div>
+                <!-- <div class="tag">好声音</div> -->
+            </div>
+            <p class="topic-title">{{topic.title}}</p>
+            <pre class="topic-excerpt" ng-bind-html="topic.content"></pre>
+            <ul class="act-img" gallery list="topic.picurl" prefix="picRoot">
+                <li ng-repeat="img in topic.picurl track by $index" style="background-image: url('{{picRoot + img}}')"></li>
+            </ul>
+        </div>
+        <div ng-repeat="t in topicComment" class="topic-reply">
+            <div class="topic-user">
+                <avatar url="picRoot + t.avatar"></avatar>
+                <div class="topic-user-info">
+                    <!-- <button class="reply-btn"><img src="/image/icon/message_mess_icon.png" class="icon" alt=""></button> -->
+                    <p class="name">{{t.nickname}}</p>
+                    <p class="topic-desc"><span class="topic-num">第{{$index + 2}}楼</span><span class="topic-time">{{t.dateline|countTime}}</span>前</p>
+                    <div class="topic-content">
+                        {{t.content}}
+                    </div>
+                    <ul class="topic-comment" ng-show="t.child.list.length">
+                        <li ng-repeat="comment in t.child.list"  ng-show="t.showMore || (!t.showMore && $index < 5)">
+                            <p>
+                                <span  class="comment-user">{{comment.nickname}}</span>:<span>{{comment.content}}</span>
+                            </p>
+                        </li>
+                        <a ng-show="t.child.list.length>5" href="" class="show-more-comment">查看更多回复...</a>
+                        <a href="" ng-click="comment.showMore = true" ng-show="t.child.list.length > 5 && !t.showMore" class="show-more-comment">查看更多回复...</a>
+                        <a href="" ng-click="comment.showMore = false" ng-show="t.showMore && t.child.list.length>5" class="show-more-comment">折叠回复</a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="send-topic">
+            <input type="text" ng-model="reply">
+            <button ng-click="replyTopic()">发送</button>
+        </div>
+    </main>
+</section>

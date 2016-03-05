@@ -1,0 +1,87 @@
+<section class="view-page league">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+        <div class="m" ng-hide="isTourist">
+            <img src="image/icon/message_posts_icon.png" alt="" ng-click="goPage('writeTheme')">
+        </div>
+    </header>
+    <main class="main">
+        <header class="ban" ng-style="unionsInfo.style">
+            <div class="league-img">
+                <avatar url="picRoot + unionsInfo.info.pic"></avatar>
+            </div>
+            <div class="league-name">
+                <div class="text-name">{{unionsInfo.info.name}}</div>
+                <div ng-show="unionsInfo.info.name">
+                    <span class="text-r">成员:{{unionsInfo.info.members}}</span>
+                    <span>帖子:{{unionsInfo.info.posts}}</span>
+                </div>
+            </div>
+            <div class="league-btn" ng-hide="isTourist">
+                <button ng-hide="unionsInfo.join" ng-click="followUnion('add')">加入</button>
+                <button ng-show="unionsInfo.join" ng-click="followUnion('quite')">退出</button>
+            </div>
+            <div class="clear"></div>
+        </header>
+        <section>
+            <div class="active-head">
+                <div class="l"></div>
+                <div class="gray-text f-l">近期活动</div>
+                <div class="gray-text f-r" ng-click="goActive()">more <i>&gt;</i></div>
+                <div class="clear"></div>
+            </div>
+            <div class="active-border"></div>
+            <div ng-show="unionsInfo.activity.length" class="active-list text-ellipsis gray-text" ng-click="goActiveDetail(a.aid)" ng-repeat="a in unionsInfo.activity track by $index" ng-class="{'list-border':!$last}">
+                <span class="text-orange" ng-show="a.city">【{{a.city}}】</span>{{a.title}}
+            </div>
+        </section>
+        <section class="post-bar-main" ng-repeat="tip in postsList track by $index" ng-click="goThemeDetail(tip.pid)">
+            <div class="show-head">
+                <div class="r-img f-l">
+                    <avatar url="picRoot+tip.avatar"></avatar>
+                </div>
+                <div class="f-l">
+                    <div class="t-name">{{tip.nickname}}</div>
+                    <div class="t-inf"><span ng-show="tip.dateline">{{tip.dateline|countTime}}前</span> {{tip.place}}</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="show-title">
+                {{tip.title}}
+            </div>
+            <div class="show-detail">
+                {{tip.summary}}
+            </div>
+            <div class="pic-list">
+                <ul gallery list="tip.picurl" prefix="picRoot" key="">
+                    <li ng-repeat="pic in tip.picurl track by $index">
+                        <img ng-src="{{picRoot + pic}}" alt="">
+                    </li>
+                </ul>
+            </div>
+            <div class="m-tlr">
+                <button class="f-l btn-gray" ng-show="tip.name">{{tip.name}}</button>
+                <button class="f-r btn-white"><img src="image/icon/message_mess_icon.png" alt="">{{tip.reply}}</button>
+                <div class="clear"></div>
+            </div>
+        </section>
+        <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+            <div class="small-scale">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+            </div>
+        </div>
+        <div class="no-content" ng-if="scrollLoadingReady && !postsList.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+        <div ng-if="noMoreFlag && postsList.length" style="color:#999;padding:10px;text-align:center;">
+            没有更多~
+        </div>
+        <div class="end-h"></div>
+    </main>
+</section>

@@ -1,0 +1,79 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+        <div ng-if="tabVoiceFlag">
+            <div class="m" ng-click="toogleSelect()">
+                <i class="i" ng-class="{up:selOpen}">&gt;</i>
+                <span>{{fitSel.cur.name}}</span>
+            </div>
+            <div class="select-w" ng-show="selOpen" ng-click="toogleSelect()">
+                <div class="l">
+                    <ul>
+                        <li ng-repeat="item in typeArr" ng-class="{active: item.name == fitSel.cur.name}" ng-click="clickSelect(item)">{{item.name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main" ng-if="!tabSubscriptionFlag">
+        <div class="banner" ng-if="tabLandingFlag">
+            <div class="swiper-container">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <nav class="nav" ng-if="tabLandingFlag">
+            <a ng-repeat="item in navList" class="k {{item.class}}" ui-sref="{{item.sref}}" ng-if="!item.hidden"><img ng-src="{{item.icon}}">{{item.name}}</a>
+        </nav>
+        <div class="part" ng-if="tabLandingFlag || tabDkFlag">
+            <div class="h" ng-if="tabLandingFlag">
+                <a class="more" ng-if="tabLandingFlag" ui-sref="{{srefUrl.dk}}">more <i>&gt;</i></a>
+                <a class="k sound">
+                    <img ng-src="{{icon.dk}}">
+                    <span ng-if="tabLandingFlag">大咖聊</span>
+                    <span ng-if="tabDkFlag">大咖聊</span>
+                </a>
+            </div>
+            <div class="w">
+                <r-list list="liveMatchList" type="'dk'"></r-list>
+            </div>
+        </div>
+        <div class="part" ng-if="tabLandingFlag || tabVoiceFlag">
+            <div class="h" ng-if="tabLandingFlag">
+                <a class="more" ui-sref="{{srefUrl.voice}}">more <i>&gt;</i></a>
+                <a class="k sound">
+                    <img ng-src="{{icon.voice}}">
+                    <span>好声音</span>
+                </a>
+            </div>
+            <div class="w">
+                <r-list list="voiceList" type="'voice'"></r-list>
+            </div>
+        </div>
+        <div class="part mg-b-0" ng-if="tabLandingFlag || tabDkFlag">
+            <div class="h">
+                <a class="k sound"><img ng-src="{{icon.wonderful}}">精彩回顾</a>
+            </div>
+            <div class="w">
+                <r-list list="endsList" type="'ends'"></r-list>
+            </div>
+        </div>
+        <div class="part bg-none mg-b-0" ng-if="tagsGet">
+            <tags-part list="tagsList" get="tagsGetType"></tags-part>
+        </div>
+    </main>
+    <main class="main" ng-if="tabOwnFlag">
+        <own-list list="ownList"></own-list>
+    </main>
+    <main class="main" ng-if="tabSubscriptionFlag">
+        <subscription-list list="subscriptionList" type="listType"></subscription-list>
+    </main>
+</section>

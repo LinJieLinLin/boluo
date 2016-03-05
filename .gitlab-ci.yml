@@ -1,0 +1,14 @@
+stages:
+- build
+
+cache:
+  paths:
+  - bower_components/
+  - node_modules/
+  - dist/
+  - build/
+
+build_job:
+  stage: build
+  script:
+  - npm i && gulp build && rm -rf /home/gitlab-runner/boluo && cp -r $(pwd)/build /home/gitlab-runner/boluo

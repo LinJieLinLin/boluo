@@ -1,0 +1,95 @@
+<section class="view-page">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="title">{{tabTitle}}</div>
+    </header>
+    <main class="main recommend-detail-main">
+        <div class="r-c-d-top">
+            <h1>{{detailInfo.Title}}</h1>
+            <p>
+                <span class="time">{{detailInfo.PostTime | countTime}}前</span>
+                <span class="tag-span" ng-if="detailInfo.Type==1">
+                    辣评
+                    <span class="tag">{{detailInfo.Tag}}</span>
+                </span>
+                <span class="tag-span style-2" ng-if="detailInfo.Type==2">
+                    前瞻
+                    <span class="tag">{{detailInfo.Tag}}</span>
+                </span>
+                <span class="vs" ng-if="detailInfo.Views">
+                    {{detailInfo.Views}}
+                    <img src="/image/icon/red_v_ic.png" alt="">
+                </span>
+                <span>&nbsp;</span>
+            </p>
+        </div>
+        <div class="r-c-d-container" ng-bind-html="detailInfo.Content"></div>
+        <p class="color-gray" style="margin-top:0.68rem;line-height:2rem;">
+            <span class="source-span">来源：{{detailInfo.source}}</span>
+        </p>
+    </main>
+    <main class="main comments-wrapper" ng-show="showCommentsFlag">
+        <div class="nd-like-bar">
+            <span class="btn" ng-click="newsLikes($event, 1, 1)" alt="赞">赞 {{detailInfo.praiseCount || 0}}</span>
+            <span class="btn" ng-click="newsLikes($event, 2, 1)" alt="踩">踩 {{detailInfo.treadCount || 0}}</span>
+        </div>
+        <h3 class="top-bar">热门评论</h3>
+        <div class="discuss-list">
+            <div class="item" ng-repeat="item in list">
+                <div class="u-p">
+                <avatar url="picRoot + (item.HeadImgUrl || item.avatar)"></avatar>
+                </div>
+                <div class="c">
+                    <p class="name">{{item.nickname}}</p>
+                    <div class="msg" style="margin-bottom:5px;">
+                        <span>{{item.content}}</span>
+                        <!-- <span ng-if="item.CiteComment"> 回复 {{item.CiteComment.NickName}}：{{item.CiteComment.Content}}</span> -->
+                    </div>
+                    <div>
+                        <!-- <label for="chat-form-edit">
+                            <span class="reply" ng-click="reply(item)">回复</span>
+                        </label> -->
+                        <span class="time">{{item.time}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+                <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+            </div>
+            <div class="no-content" ng-if="scrollLoadingReady && !list.length">
+                赶紧抢沙发~
+            </div>
+            <div class="no-content" ng-show="scrollLoadingReady && noMoreFlag">
+                {{msg}}
+            </div>
+        </div>
+    </main>
+    <footer class="n-d-ft-bar" ng-hide="showEditFlag">
+        <label for="chat-form-edit">
+            <span class="edit-btn" ng-click="showEdit()">写评论</span>
+        </label>
+        <span class="" ng-click="showComments()">查看评论({{detailInfo.commentCount || 0}})</span>
+    </footer>
+    <footer ng-show="showEditFlag">
+        <div class="chat-form-mask" ng-click="showEdit()" style="background:rgba(0,0,0,.0)"></div>
+        <div class="discuss-form">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <div class="ew">
+                            <input ng-model="msgContent" type="text" class="edit" id="chat-form-edit" placeholder="{{replyNickName || '说点什么吧:'}}">
+                        </div>
+                    </td>
+                    <td class="r">
+                        <span class="send" ng-click="sendComment()">评论</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </footer>
+</section>

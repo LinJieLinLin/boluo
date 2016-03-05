@@ -1,0 +1,186 @@
+@import '../../style/common/var';
+@import '../../style/common/mixin';
+.league {
+    main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: $height-header-px;
+        background: $color-bg-light-gray;
+        // position: absolute;
+        // left: 0;
+        // right: 0;
+        // bottom: 0;
+        // top: $pineappleNavHeight + $height-header-px;
+        @include overflow-scroll;
+    }
+    .header {
+        // position:fixed;
+    }
+    .m-rl {
+        margin: 0 0.68rem;
+    }
+    .m {
+        img {
+            height: 2rem;
+            vertical-align: middle;
+        }
+    }
+    .ban {
+        background: #E9740A no-repeat center;
+        height: 6rem;
+        background-size: 100% 100%;
+        width: 100%;
+        padding: 1rem 0.68rem;
+    }
+    .league-img {
+        width: 25%;
+        float: left;
+        .user-avatar {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+    .league-name {
+        width: 50%;
+        float: left;
+        color: $color-text-white;
+        .text-name {
+            font-size: 1rem;
+            line-height: 2.5rem;
+            color: $color-text-white;
+        }
+    }
+    .league-btn {
+        width: 15%;
+        float: right;
+        margin-right: 1rem;
+        line-height: 4rem;
+        button {
+            font-size: 1rem;
+            min-width: 4rem;
+            border: none;
+            border-radius: 5px;
+            padding: 0.2rem 0.5rem 0.1rem 0.5rem;
+            color: $color-text-white;
+            background-color: $color-bg-red;
+        }
+    }
+    .text-r {
+        margin-right: 0.3rem;
+    }
+    section {
+        margin-top: 0.7rem;
+        background-color: $color-bg-white;
+        padding: 0.68rem 0;
+    }
+    .section {
+        margin-top: 0.7rem;
+        background-color: $color-bg-white;
+        padding: 0.68rem 0;
+    }
+    .active-head {
+        font-size: 1rem;
+        height: 1rem;
+        @extend .m-rl;
+        .l {
+            float: left;
+            width: 4px;
+            height: 100%;
+            margin-right: 0.2rem;
+            background-color: $color-bg-orange;
+        }
+    }
+    .border-1 {
+        border-bottom: 1px solid $color-bd-light-gray;
+    }
+    .active-border {
+        @extend .border-1;
+        width: 100%;
+        margin: 0.68rem 0 0 0;
+    }
+    .active-list {
+        margin: 0.68rem 0.7rem 0 0.7rem;
+    }
+    .list-border {
+        @extend .border-1;
+        padding-bottom: 0.68rem;
+    }
+    .end-h {
+        height: 3em;
+        width: 100%;
+    }
+}
+
+.league-list-main {
+    .l-tab-list {
+        width: 5rem;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        background: #ececec;
+        @include overflow-scroll;
+        .item {
+            text-align: center;
+            line-height: 2rem;
+            height: 2rem;
+            @include line-clamp(1);
+            &.active {
+                background: white;
+            }
+        }
+    }
+    .r-wrap {
+        position: absolute;
+        left: 5rem;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: white;
+        padding: 0.3rem $inner-width-rem $inner-width-rem;
+        @include overflow-scroll;
+        .item {
+            margin-bottom: 10px;
+            .ht {
+                border-left: 3px solid $color-bg-orange;
+                padding-left: 8px;
+                margin: 10px 0 5px;
+            }
+            .m{
+                background-color: #f2f2f2;
+                padding:10px 0;
+            }
+            .c {
+                overflow: hidden;
+                height:3.2rem;
+                &.open{
+                    height:auto;
+                }
+            }
+            .block {
+                width:25%;
+                text-align:center;
+                display: inline-block;
+                float: left;
+                margin-bottom: 10px;
+                .pic{
+                    img{
+                        width:2rem;
+                        height:2rem;
+                        border-radius:100%;
+                    }
+                }
+                .name{
+                    line-height: 1rem;
+                    height: 1rem;
+                    @include line-clamp(1);
+                }
+            }
+            .b{
+                clear: both;
+                text-align: center;
+            }
+        }
+    }
+}

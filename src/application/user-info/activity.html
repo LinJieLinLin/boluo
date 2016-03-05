@@ -1,0 +1,52 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            活跃值指数
+        </div>
+    </header>
+    <main class="main activity-page">
+        <div class="activity-cover">
+            <div class="user-avatar-wrapper">
+                <avatar url="user.avatar"></avatar>
+                <img src="/image/icon/user_details_head_bg.png" class="user-avatar-deco" alt="">
+            </div>
+            <div class="activity-info">
+                <p>你现在的等级为 <span class="text-orange">LV{{actDetail.level}}</span></p>
+                <div class="activity-bar">
+                    <div class="bar-outer">
+                        <div class="bar-inner" ng-style="activityBarStyle"></div>
+                    </div>
+                    <span>{{actDetail.num}}</span> / <span>{{actDetail.max}}</span>
+                </div>
+                <p>
+                    还有 <span>{{actDetail.max - actDetail.num}}</span> 活跃值升 Lv<span>{{+actDetail.level + 1}}</span>
+                </p>
+            </div>
+        </div>
+        <div class="list-block">
+            <div class="list-block-title activity-title">
+                活跃指数规则
+            </div>
+            <div class="list-view list-text">
+                活跃指数规则是通过在 APP 内消费、签到、完成任务等方式获取的数值，活跃指数的累计将会提升用户的等级。
+            </div>
+        </div>
+        <div class="list-block">
+            <div class="list-block-title activity-title">
+                活跃指数获取方式
+            </div>
+            <div class="list-view list-text">
+                <ol>
+                    <li>礼物/道具购买：通过购买礼物/道具 每消耗 0.1 金菠萝获得 10 点活跃值</li>
+                    <li>通过完成日常任务获得（每日 0 点刷新日常任务）</li>
+                </ol>
+            </div>
+        </div>
+        <div class="go-to-task">
+            <button class="task-btn" ui-sref="task({id: user.id})">马上去完成任务</button>
+        </div>
+    </main>
+</section>

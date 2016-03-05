@@ -1,0 +1,22 @@
+<section class="view-page" ng-class="{ shrink : pcAct}">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            我的昵称
+        </div>
+        <div class="m" ng-click="done('nickname')">
+            完成
+        </div>
+    </header>
+    <main class="main">
+        <div class="edit-input">
+            <textarea ng-model="user.nickname" ng-keydown="type($event, 25, user.nickname.length)"></textarea>
+            <span class="input-length">
+                <span>{{25 - (user.nickname.length || 0)}}</span>/
+                <span>25</span>
+            </span>
+        </div>
+    </main>
+</section>

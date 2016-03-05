@@ -1,0 +1,40 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            完场数据
+        </div>
+    </header>
+    <main class="main">
+        <ul class="data-list">
+        <li ng-repeat="d in list" class="list-view">
+                <p class="data-date">{{d.cndate}}</p>
+                <p class="data-type">{{d.matchname}}</p>
+                <div class="data-competitor">
+                    <div class="com-1">
+                        <div class="com-avatar">
+                            <img ng-src="{{d.guestTeam.avatar}}" alt="">
+                        </div>
+                        <p>{{d.guestTeam.name}}</p>
+                    </div>
+                    <div class="data-score">
+                        <p class="data-num">{{d.guestTeam.score}}:{{d.homeTeam.score}}</p>
+                        <p>完场</p>
+                    </div>
+                    <div class="com-2">
+                        <div class="com-avatar">
+                            <img ng-src="{{d.homeTeam.avatar}}" alt="">
+                        </div>
+                        <p>{{d.homeTeam.name}}</p>
+                    </div>
+                </div>
+                <div class="data-spec">
+                    <span>讲评专家：<span class="data-spec-user">{{d.commentators}}</span></span>
+                    <span class="data-viewed"><span class="text-orange">{{d.membernum || 0}}</span>看过</span>
+                </div>
+            </li>
+        </ul>
+    </main>
+</section>

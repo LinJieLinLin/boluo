@@ -1,0 +1,23 @@
+<main class="related-main">
+    <div class="related-list">
+        <div class="item" ng-repeat="item in list">
+            <a ui-sref="watch.voice({vid: item.aid})">
+                <div class="img" ng-style="{backgroundImage: 'url('+ (picRoot + item.pic) +')' }"></div>
+                <div class="c">
+                    <p class="title">{{item.title}}</p>
+                    <p class="if">
+                        <span class="time">{{item.time}}</span>
+                        <!-- <span>by 何辉</span> -->
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="perloader-dir static" ng-if="!noMoreFlag && showScrollLoadingFlag && list.length">
+        <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+    </div>
+    <div class="no-content" ng-if="scrollLoadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+    <div ng-if="noMoreFlag && list.length" style="color:#999;padding:10px;text-align:center;">
+        没有更多~
+    </div>
+</main>

@@ -1,0 +1,23 @@
+<section class="view-page" style="z-index:100;">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            已报名 <span ng-show="list.length">{{list.length}} 人</span> 
+        </div>
+    </header>
+    <main class="main">
+        <ul class="list-block user-follow">
+            <li ng-repeat="follow in list" class="list-view">
+                <avatar url="picRoot + follow.avatar"></avatar>
+                <div class="follow-detail">
+                    <p class="follow-name">{{follow.name}}</p>
+                    <p class="follow-intro">
+                        <span>{{follow.location}}</span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </main>
+</section>

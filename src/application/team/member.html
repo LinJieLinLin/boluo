@@ -1,0 +1,39 @@
+<div class="team-member">
+    <section class="list-block">
+        <div class="list-view">
+            简介
+            <button ng-show="team.admin_id == user.id" ui-sref="team.edit" class="list-item-content team-setting-btn"><img src="/image/icon/iconfont_set.png" alt=""><span>设置</span></button>
+        </div>
+        <pre class="list-view team-intro pre-label" ng-bind-html="team.introduction"></pre>
+        <div class="list-view team-num">
+            组织号：<span>{{team.tid}}</span>
+        </div>
+    </section>
+    <section class="list-block">
+        <div class="list-view user-item">
+            <avatar url="picRoot + team.avatar"></avatar>
+            <div class="team-admin-detail user-item-right">
+                <p class="team-admin-name name">{{team.nickname}}</p>
+                <p>
+                    <span class="team-admin-icon">管理员</span>
+                </p>
+            </div>
+            <span class="list-item-content" ui-sref="team.transferAdmin" ng-show="team.admin_id==user.id">
+                转让管理员 &gt;
+            </span>
+        </div>
+    </section>
+    <section class="list-block">
+        <div class="list-block-title">成员（<span class="team-member-num">{{member.length || 0}}</span>）</div>
+        <div class="list-view user-item" ng-repeat="user in member">
+            <avatar url="picRoot + user.avatar"></avatar>
+            <div class="user-item-right">
+                <p class="name">{{user.nickname}}</p>
+                <p class="desc">
+                    {{user.dname}}
+                    <img ng-src="/image/icon/focus_{{user.sex == 1 ? 'boy' : 'girl'}}.png" alt="">
+                </p>
+            </div>
+        </div>
+    </section>
+</div>

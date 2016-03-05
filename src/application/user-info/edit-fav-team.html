@@ -1,0 +1,33 @@
+<section class="view-page" ng-class="{ shrink : pcAct}">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            喜欢的球队
+        </div>
+    </header>
+    <main class="main">
+        <div class="fav-team fav-section">
+            <div class="team-header">
+                已关注的球队
+                <span class="header-desc">
+                    (最多关注3个球队)
+                </span>
+                <button ng-show="!$parent.editMode" ng-click="$parent.editMode=true" class="edit-btn">编辑</button>
+                <button ng-show="$parent.editMode" ng-click="done('favTeam')" class="finish-btn">完成</button>
+            </div>
+            <ul>
+                <li ng-click="removeFav(team, 'favTeam')" ng-class="{edit: $parent.editMode}" class="user-setting-item" ng-repeat="team in user.favTeam">{{team.name}}</li>
+            </ul>
+        </div>
+        <div class="hot-team fav-section">
+            <div class="team-header">
+                热门球队
+            </div>
+            <ul>
+                <li ng-click="selectFav(team, 'favTeam')" ng-hide="hideFav(team, 'favTeam')" class="user-setting-item" ng-repeat="team in hotTeam">{{team.name}}</li>
+            </ul>
+        </div>
+    </main>
+</section>

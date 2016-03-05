@@ -1,0 +1,20 @@
+<main class="discuss-main">
+    <div class="discuss-list">
+        <div class="item" ng-repeat="item in list">
+            <div class="u-p">
+                <img ng-src="{{item.avatar || icon.defaultAvatar}}" alt="">
+            </div>
+            <div class="c">
+                <p class="name">{{item.nickname}}</p>
+                <div class="msg">{{item.message}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="perloader-dir static" ng-if="!noMoreFlag && showScrollLoadingFlag && list.length">
+        <div class="small-scale"><div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div></div>
+    </div>
+    <div class="no-content" ng-if="scrollLoadingReady && !list.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+    <div ng-if="noMoreFlag && list.length" style="color:#999;padding:10px;text-align:center;">
+        没有更多~
+    </div>
+</main>

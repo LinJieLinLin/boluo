@@ -1,0 +1,59 @@
+<section class="view-page mall-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            商城
+        </div>
+        <div class="m" ng-click="goRecharge()">充值</div>
+    </header>
+    <main class="main mall">
+        <div class="list" ng-repeat="m in magicsList track by $index" ng-class="{'border-b1':!$last}" ng-click="clickBuy(m)">
+            <table width="100%" class="mall-list-table">
+                <tr>
+                    <td class="img">
+                        <img ng-src="{{picRoot + m.pic}}">
+                    </td>
+                    <td class="c">
+                        <p class="name">{{m.name}}</p>
+                        <p class="color-gray">{{m.description}}</p>
+                    </td>
+                    <td class="r">
+                        <span class="text-orange">{{m.price}}</span>菠萝币(<span class="text-orange">{{m.exchange}}</span>菠萝豆)
+                    </td>
+                </tr>
+            </table>
+    </main>
+    <div class="buy-bar" ng-show="buyFlag">
+        <div class="mask-w" ng-click="cancelBuy()"></div>
+        <div class="w">
+            <div class="t">
+                <table width="100%">
+                    <tr>
+                        <td class="img">
+                            <img ng-src="{{picRoot + buy.pic}}">
+                        </td>
+                        <td>
+                            <p class="name">{{buy.name}}</p>
+                            <p class="color-gray">{{buy.description}}</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="action-bar">
+                <div class="buy-num">
+                    购买数量：
+                    <span class="less" ng-click="countBuyNum('-')"> - </span>
+                    <span class="num">{{buy.buyNum}}</span>
+                    <span class="plus" ng-click="countBuyNum('+')"> + </span>
+                    <span class=""> <span class="text-orange">{{buy.price*buy.buyNum|number:2}}</span> 菠萝币</span>
+                </div>
+                <div class="f-t">
+                    <span ng-click="gotoBuy()">去支付</span>
+                    <span ng-click="cancelBuy()">取消</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

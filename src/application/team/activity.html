@@ -1,0 +1,27 @@
+<div class="team-activity">
+    <section class="list-block" ng-class="{outdate: act.status==2}" ng-repeat="act in activityList track by act.aid">
+        <div class="list-view"  ui-sref="team.activityDetail({aid: act.aid})">
+            <div class="act-info">
+                <img ng-src="{{picRoot + act.pics[0].big_pic}}" class="act-bg" />
+                <div class="act-info-right">
+                    <p class="name">{{act.name}}</p>
+                    <span class="act-num">人数：<span>{{act.people_num}}</span></span>
+                    <p class="act-holder">举办方：{{act.team_name}}</p>
+                    <ul class="act-holder-list">
+                        <li ng-repeat="h in act.fellowship_team">{{h}}</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="act-location"><img class="icon" src="/image/icon/message_position_icon.png" alt="">{{parseLoc(act.city)}} {{act.place}}</p>
+            <p class="act-time"><img src="/image/icon/radio_room_time_icon.png" alt="" class="icon">{{act.start_time|time}}-{{act.end_time|time}}</p>
+            <ul class="act-img">
+                <li ng-repeat="img in act.pic track by $index" style="background-image: url('{{picRoot + img.big_pic}}')"></li>
+            </ul>
+            <div class="comment-content">
+                <button class="act-top active" ng-show="act.stick==2 && team.admin_id==user.id" ng-click="stick($event, act, 1)"><img src="/image/icon/radio_room_cilck_star_icon.png" alt="">取消置顶</button>
+                <button class="act-top" ng-show="act.stick!=2 && team.admin_id==user.id" ng-click="stick($event, act, 2)"><img src="/image/icon/radio_room_star_icon.png" alt="">活动置顶</button>
+                <button class="act-comment"><img src="/image/icon/message_mess_icon.png" class="icon" alt="">{{act.post_num}}</button>
+            </div>
+        </div>
+    </section>
+</div>

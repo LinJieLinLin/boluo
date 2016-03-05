@@ -1,0 +1,23 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            朋友验证
+        </div>
+        <div class="m" ng-click="friendReq()">
+            发送
+        </div>
+    </header>
+    <main class="main add-friend-request">
+        <div class="list-block">
+            <div class="list-block-title">
+                你需要发送验证申请，等待对方通过
+            </div>
+            <div class="list-view">
+                <input type="text" ng-model="requestFriendMsg">
+            </div>
+        </div>
+    </main>
+</section>

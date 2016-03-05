@@ -1,0 +1,37 @@
+<section class="view-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">搜索团队</a>
+        </div>
+    </header>
+    <div class="main search-team">
+        <div class="search-input">
+            <input type="text" ng-model="searchName" placeholder="请输入团队名称">
+            <button ng-click="search()">搜索</button>
+        </div>
+        <div class="search-filter">
+            <select name="location" id="location" ng-model="city">
+                <option value="">地区</option>
+                <option ng-repeat="l in locationList" value="{{l.code}}">{{l.dname}}</option>
+            </select>
+            <span class="diver">|</span>
+            <select name="union" id="union" ng-model="nid">
+                <option value="">相关俱乐部</option>
+                <option ng-repeat="u in unionList" value="{{u.nid}}">{{u.name}}</option>
+            </select>
+        </div>
+        <ul class="team-list">
+            <li ng-repeat="team in teamList" class="team-item" ui-sref="team.activity({id: team.tid, avatar: 0})">
+                <avatar url="team.pic"></avatar>
+                <div class="team-info">
+                    <p class="team-name">{{team.name}}</p>
+                    <p><span class="team-num"><img src="/image/icon/myteam_peoples_icon.png" alt="">{{team.count}}</span><span class="team-location"><img src="/image/icon/myteam_position_icon.png" alt="">{{team.dname}}</span></p>
+                    <p class="team-last-act">最近活动：<span>{{team.new_activity}}</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,79 @@
+<section class="view-page unions-active">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">活动列表</a>
+        </div> 
+        <div class="m" ng-hide="isTourist">
+            <img src="image/icon/message_posts_icon.png" alt="" ng-click="goWriteActive()">
+        </div>       
+    </header>
+    <main class="main">
+        <section class="post-bar-main" ng-repeat="active in activeList track by $index" ng-click="goActiveDetail(active.aid)">
+            <div class="show-head">
+                <div class="r-img f-l">
+                    <avatar url="picRoot + active.avatar"></avatar>
+                </div>
+                <div class="f-l">
+                    <div class="t-name">{{active.nickname}}</div>
+                    <div class="t-inf"><span ng-show="active.dateline">{{active.dateline|countTime}}前</span></div>
+                </div>
+                <div class="f-r m-tb">
+                    <button class="f-l btn-gray" ng-show="active.name">{{active.name}}</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="show-detail">
+                <span class="gray-text">活动主题：</span>{{active.title}}
+            </div>
+            <div class="show-detail">
+                <span class="gray-text">活动内容：</span>{{active.content}}
+            </div>
+            <div class="pic-list" ng-show="active.picurl.length">
+                <ul gallery list="active.picurl" prefix="picRoot" key="">
+                    <li ng-repeat="pic in active.picurl track by $index">
+                        <img ng-src="{{picRoot + pic}}" alt="">
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="post-bar-main reply-theme" ng-repeat="replyData in replyList track by $index">
+            <div class="show-head">
+                <div class="r-img f-l">
+                    <img ng-src="{{picRoot + replyData.avatar}}" alt="">
+                </div>
+                <div class="f-l">
+                    <div class="t-name">{{replyData.nickname}}</div>
+                    <div class="t-inf"><span ng-show="theme.dateline">{{replyData.dateline|countTime}}前</span> {{replyData.place}}</div>
+                </div>
+                <div class="f-r m-tb">
+                    <button class="f-r btn-white" ng-click="selectReply(replyData)"><img src="image/icon/message_mess_icon.png" alt=""></button>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="reply-c">
+                <p>{{replyData.content}}</p>
+                <div class="reply-cc" ng-repeat="r in replyData.child.list track by $index" ng-class="{'border-t1':!$last}">
+                    <span ng-class="{'t-blue':theme.uid!=userData.id,'t-orange':theme.uid==userData.id}">{{r.nickname}}</span>:{{r.content}}
+                </div>
+                <div class="reply-cc f-r t-orange" ng-click="goBuildPage(replyData.pid)" ng-show="replyData.child.hasNext">查看更多回复...</div>
+                <div class="clear"></div>
+            </div>
+        </section>
+        <div class="perloader-dir static" ng-if="!noMoreFlag && scrollLoadingReady && showScrollLoadingFlag">
+            <div class="small-scale">
+                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+            </div>
+        </div>
+        <div class="no-content" ng-if="scrollLoadingReady && !activeList.length" style="padding:3rem 0">(∩_∩)还没有内容~~~</div>
+        <div ng-if="noMoreFlag && activeList.length" style="color:#999;padding:10px;text-align:center;">
+            没有更多~
+        </div>
+        <div class="end-h4"></div>
+    </main>
+</section>

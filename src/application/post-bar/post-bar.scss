@@ -1,0 +1,391 @@
+@import '../../style/common/var';
+@import '../../style/common/mixin';
+$post-bar-d:0.4rem;
+.gray-text {
+    color: $color-text-minor;
+}
+
+.gray-text5 {
+    color: $color-text-gray5;
+}
+
+.upload-theme-img-input {
+    input {
+        padding-left: 2.5rem;
+    }
+}
+
+.upload-theme-img {
+    margin: 0.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    width: 2rem;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.post-bar-main {
+    button {
+        border: none;
+        height: 1.5rem;
+        border-radius: 5px;
+        padding: 0.2rem $post-bar-d 0.1rem $post-bar-d;
+    }
+    .f-l {
+        float: left;
+    }
+    .f-r {
+        float: right;
+    }
+    .m {
+        margin: 0 0.68rem;
+    }
+    .m-tlr {
+        margin: 0.68rem 0.68rem 0 0.68rem;
+    }
+    .recommend-team {
+        margin-top: $post-bar-d;
+        overflow: auto;
+        white-space: nowrap;
+        min-height: 5rem;
+        li {
+            display: inline-block;
+            text-align: center;
+            width: 25%;
+            p {
+                margin-top: 0.3rem;
+            }
+        }
+        .user-avatar {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+    .pic-list {
+        margin-top: 0.5rem;
+        white-space: nowrap;
+        @include overflow-scroll;
+        min-height: 4.2rem;
+        li {
+            display: inline-block;
+            text-align: center;
+            height: 3.5rem;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            margin-left: $inner-width-rem;
+            p {
+                margin-top: 0.3rem;
+            }
+            img {
+                height: 100%;
+            }
+        }
+    }
+    .section {
+        margin-top: 0.7rem;
+        background-color: $color-bg-white;
+        padding: 0.68rem 0;
+    }
+    .r-img {
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+        }
+        .user-avatar {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+    .hot-head {
+        font-size: 0.95rem;
+        height: 1rem;
+        line-height: 1rem;
+        @extend .m;
+        .l {
+            float: left;
+            width: 4px;
+            height: 100%;
+            margin-right: 0.2rem;
+            background-color: $color-bg-orange;
+        }
+        i {
+            vertical-align: middle;
+        }
+    }
+    .hot-list {
+        @extend .m-tlr;
+        overflow: hidden;
+        text-align: center;
+        .r-img {
+            height: 3rem;
+            width: 3rem;
+        }
+    }
+    .t-name {
+        color: $color-text-orange;
+        font-size: 0.95rem;
+        line-height: 1.6rem;
+    }
+    .t-inf {
+        font-size: 0.8rem;
+        line-height: 1rem;
+        color: $color-text-minor;
+    }
+    .show-head {
+        height: 3rem;
+        @extend .m;
+        .r-img {
+            height: 3rem;
+            width: 3rem;
+            margin-right: 0.68rem;
+        }
+    }
+    .show-title {
+        font-size: 0.95rem;
+        line-height: 1rem;
+        @extend .m-tlr;
+    }
+    .show-detail {
+        @extend .gray-text5;
+        @extend .m-tlr;
+        line-height: 2;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+    .label-bar{
+        @extend .m-tlr;
+        margin-top: 0;
+    }    
+    .list-queue{
+        .show-title ,
+        .show-detail {
+            line-height: 1rem;
+            height: 1rem;
+            @include line-clamp(1);
+        } 
+    }
+    .btn-gray {
+        color: $color-text-white;
+        background-color: $color-bg-gray;
+    }
+    .btn-white {
+        background-color: $color-bg-white;
+        color: $color-text-minor;
+        border: 1px solid $color-bd-gray;
+        img {
+            height: 1rem;
+            vertical-align: middle;
+        }
+    }
+    .end-h {
+        height: 3em;
+        width: 100%;
+    }
+}
+
+.theme-detail {
+    main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: $height-header-px;
+        background: $color-bg-light-gray;
+        @include overflow-scroll;
+    }
+    section {
+        background-color: $color-bg-white;
+        padding: 0.68rem 0;
+    }
+    .m-tb {
+        margin-top: $post-bar-d;
+        margin-bottom: $post-bar-d;
+    }
+    .reply-theme {
+        background-color: $color-bg-light-gray;
+        border-bottom: 1px solid $color-bd-gray;
+    }
+    .reply-build {
+        background-color: $color-bg-white;
+    }
+    .header {
+        img {
+            height: 2rem;
+            vertical-align: middle;
+        }
+    }
+    .end-h4 {
+        height: 4em;
+        width: 100%;
+    }
+    .post-bar-main {
+        button {
+            height: auto;
+        }
+    }
+    .reply-c {
+        margin-left: 4.36rem;
+        padding-top: $post-bar-d;
+        margin-right: 0.68rem;
+        p {
+            margin-bottom: $post-bar-d;
+            @extend .gray-text5;
+            // color: $color-text-gray5;
+        }
+        @extend .gray-text;
+    }
+    .border-t1 {
+        border-top: 1px solid $color-bd-gray;
+    }
+    .t-orange {
+        color: $color-text-orange;
+    }
+    .t-blue {
+        color: $color-text-blue;
+    }
+    .reply-cc {
+        padding-top: $post-bar-d;
+    }
+    .send-topic {
+        padding: 0.5rem;
+        .input {
+            padding-left: 2.5rem;
+            padding-right: 2.2rem;
+        }
+    }
+    .recommend-team {
+        margin: 0;
+        position: relative;
+        li {
+            margin-top: 0.5rem;
+            display: inline-block;
+            width: 3rem;
+            height: 3rem;
+            background-size: cover;
+            background-position: center;
+            margin-right: 0.5rem;
+            position: relative;
+            .del {
+                position: absolute;
+                top: -0.4rem;
+                right: -0.3rem;
+                height: 1rem;
+                width: 1rem;
+                background-image: url('/image/icon/message_del_icon.png');
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}
+
+.unions-active {
+    main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: $height-header-px;
+        background: $color-bg-light-gray;
+        @include overflow-scroll;
+    }
+    section {
+        background-color: $color-bg-white;
+        padding: 0.68rem 0;
+        border-bottom: 1px solid $color-bd-light-gray;
+    }
+    .header {
+        img {
+            height: 2rem;
+            vertical-align: middle;
+        }
+    }
+    .show-head {
+        button {
+            height: auto;
+        }
+    }
+}
+
+.write-active {
+    background-color: $color-bg-white;
+    main {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: $height-header-px;
+        background: $color-bg-white;
+        .p-f {
+            background-color: $color-bg-white;
+        }
+    }
+    .header {
+        .m {
+            color: $color-text-orange3;
+        }
+    }
+    .active {
+        margin-left: 1rem;
+    }
+    .a-th {
+        height: 2.5rem;
+        font-size: 0.8rem;
+        padding-top: 0.9rem;
+        border-bottom: 1px solid $color-bd-gray;
+        overflow: hidden;
+        input {
+            border: none;
+            font-size: 0.7rem;
+            width: 77%;
+        }
+    }
+    .t-th {
+        padding-top: 0.9rem;
+        overflow: hidden;
+        textarea {
+            vertical-align: text-top;
+            width: 77%;
+            padding: 0 0.3rem;
+            border: none;
+            font-size: 0.95rem;
+        }
+    }
+    .pid-line {
+        width: 100%;
+        border-top: 1px solid $color-bd-gray;
+    }
+    .recommend-team {
+        margin: 0;
+        position: relative;
+        li {
+            width: 33%;
+            margin-left: 3%;
+            margin-right: 3%;
+            margin-top: 0.5rem;
+            max-height: 7rem;
+            position: relative;
+            .del {
+                position: absolute;
+                top: -0.4rem;
+                right: -0.3rem;
+                height: 1rem;
+                width: 1rem;
+                background-image: url('/image/icon/message_del_icon.png');
+                background-repeat: no-repeat;
+                background-size: 100%;
+            }
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}

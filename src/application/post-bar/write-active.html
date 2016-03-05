@@ -1,0 +1,69 @@
+<section class="view-page write-theme write-active ">
+    <header class="header">
+        <div class="u-p" ng-click="toggleSideBar()" ng-if="shuoAvatarFlag">
+            <avatar url="user.avatar"></avatar>
+        </div>
+        <div class="back" ng-click="backPage()" ng-if="!shuoAvatarFlag">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            <a class="k">{{tabTitle}}</a>
+        </div>
+        <div class="m" ng-click="setToActivity()">发贴</div>
+    </header>
+    <main class="main">
+        <div class="active">
+            <div class="a-th">
+                <label>
+                    活动主题：
+                    <input class="f-r" type="text" name="" value="" ng-model="setToActivityData.title" placeholder="活动主题">
+                    <div class="clear"></div>
+                </label>
+            </div>
+            <div class="a-th">
+                <label>
+                    开始时间：
+                    <input class="f-r" type="datetime-local" name="" ng-model="setToActivityData.start_time" value="">
+                    <div class="clear"></div>
+                </label>
+            </div>
+            <div class="a-th">
+                <label>
+                    活动地点：
+                    <input class="f-r" type="text" name="" ng-model="setToActivityData.place" value="" placeholder="活动地点">
+                    <div class="clear"></div>
+                </label>
+            </div>
+            <div class="a-th">
+                <label>
+                    计划人数：
+                    <input class="f-r" type="number" name="" ng-model="setToActivityData.member" value="" placeholder="计划人数">
+                    <div class="clear"></div>
+                </label>
+            </div>
+            <div class="t-th">
+                活动内容：
+                <textarea name="" placeholder="请输入内容" id="" cols="30" rows="10" ng-model="setToActivityData.content"></textarea>
+            </div>
+        </div>
+        <div class="p-f">
+            <div class="m-tlr">
+                <div class="add-pic">
+                    <img src="image/icon/message_photo_icon.png" alt="" ng-click="upload()">
+                </div>
+            </div>
+            <div class="pid-line"></div>
+            <div class="recommend-team" ng-show="setToActivityData.picUrl.length">
+                <ul>
+                    <li ng-repeat="pic in setToActivityData.picUrl track by $index">
+                        <img ng-src="{{picRoot+pic}}" alt="">
+                        <i class="del" ng-click="delPic($index)"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ng-show="uploading">
+            <perloader-dir show="true"></perloader-dir>
+        </div>
+    </main>
+</section>

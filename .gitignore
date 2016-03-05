@@ -1,0 +1,6 @@
+node_modules
+dist
+bower_components
+src/style/common/sprite.scss
+.DS_Store
+build

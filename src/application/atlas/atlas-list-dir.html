@@ -1,0 +1,15 @@
+<div class="list rows-3">
+    <div class="item" ng-repeat="item in list">
+        <a ui-sref="photoswipe({pid: item.pid, title: item.pname})">
+            <div class="img" ng-style="{backgroundImage: 'url('+ (picRoot + item.cover) +')' }">
+            </div>
+            <div class="c">
+                <p class="title cols-1 mg-b-5">{{item.pname}}</p>
+                <p class="if">
+                    <span class="time">{{item.time}}</span>
+                </p>
+            </div>
+        </a>
+    </div>
+    <div class="clear"></div>
+</div>

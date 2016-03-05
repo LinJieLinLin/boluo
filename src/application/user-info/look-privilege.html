@@ -1,0 +1,30 @@
+<section class="view-page recharge-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            查看特权
+        </div>
+    </header>
+    <main class="main">
+        <div class="activity-cover">
+            <div style="color:white;padding:1rem 0;line-height:1.5rem;">
+                充值达到如下条件，即可拥有对应的<span class="color-orange">个性头像</span>以及<span class="color-orange">爵位勋章</span>，全面提升您的界面以及聊天室<span class="color-orange">尊贵形象</span>！
+            </div>
+        </div>
+        <div class="list-block" style="margin-top:10px;border-top:1px solid #dfdfdf;">
+            <ul ng-repeat="item in list">
+                <li>
+                    <img ng-src="{{picRoot + item.pic}}" alt="">
+                </li>
+                <li>
+                    {{item.name}}
+                </li>
+                <li style="text-align:right;width:8rem;">
+                    <span class="color-gray">充值{{item.price}}元即可获得</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+</section>

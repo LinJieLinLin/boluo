@@ -1,0 +1,782 @@
+@import '../../style/common/var';
+@import '../../style/common/mixin';
+
+.team-info-btn {
+    img {
+        wdith: 2rem;
+        height: 2rem;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+    }
+}
+
+
+.team-detail {
+    &.is-joined {
+        .team-topic, .team-activity {
+            padding-bottom: 3rem;
+        }
+    }
+    .cover{
+        background-image:none;
+        background-size:100% 100%;
+        padding-top: 7rem;
+        .team-info {
+            text-shadow: 1px 1px 0 rgba($color-bg-black, 0.5);
+        }
+    }
+    .icon {
+        height: 0.8rem;
+        vertical-align: middle;
+    }
+    .list-block {
+        margin: 0.68rem 0;
+    }
+    .team-info, .topic-user {
+        padding: 0.5rem;
+        > div {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0.68rem;
+            color: $color-text-white;
+            &.user-avatar {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+        .name {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        span {
+            margin-right: 2rem;
+        }
+    }
+
+    .topic-user {
+        > div {
+            color: $color-text-minor;
+        }
+        .name {
+            color: $color-text-orange;
+        }
+        span {
+            margin-right: 0;
+        }
+    }
+
+    .topic-title {
+        font-size: 1rem;
+        color: $color-text-primary;
+    }
+
+    .topic-excerpt {
+        color: #666;
+        margin: 0.5rem 0;
+        line-height: 2;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        padding: $inner-width-rem;
+
+        &.list-s{
+            line-height:1rem;
+            padding:0;
+            @include line-clamp(1);
+        }
+    }
+
+    .topic-tag {
+        li {
+            display: inline-block;
+            padding: 0.25rem 0.8rem;
+            background: $color-bg-orange;
+            color: $color-text-white;
+            margin-right: 0.5rem;
+            border-radius: 4px;
+        }
+    }
+
+    .comment-content {
+        text-align: right;
+    }
+
+    .topic-comment, .act-comment {
+        padding: 0.1rem 0.5rem;
+        border: 1px solid $color-bd-gray;
+        color: $color-text-minor;
+        background: none;
+        border-radius: 3px;
+    }
+
+    .menu-list {
+        padding: 0.25rem;
+        background: $color-bg-white;
+        margin-bottom: 0.68rem;
+        li {
+            display: inline-block;
+            padding: 0.25rem;
+            width: 25%;
+            text-align: center;
+            background: $color-bg-white;
+            color: $color-text-minor;
+            border-radius: 4px;
+            &.active {
+                color: $color-text-white;
+                background: $color-bg-orange;
+            }
+        }
+    }
+
+    .team-action {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        background: $color-bg-white;
+        text-align: center;
+        border-top: 1px solid $color-bd-light-gray;
+        z-index: 1;
+        button {
+            font-size: 0.8rem;
+            color: $color-text-white;
+            border: none;
+            background: $color-bg-orange;
+            padding: 0.4rem;
+            width: 7rem;
+            margin: 0 0.5rem;
+            border-radius: 4px;
+            &:first-child {
+                background: $color-bg-red;
+            }
+        }
+    }
+}
+
+
+.act-img {
+    white-space: nowrap;
+    overflow: auto;
+    min-height: 3.5rem;
+    li {
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        background-size: cover;
+        background-position: center;
+        margin-right: 0.5rem;
+    }
+}
+
+
+.topic-reply {
+    position: relative;
+    border-bottom: 1px solid $color-bd-gray;
+    .topic-user-info {
+        padding: 0 0 1rem 4rem;
+        width: 100%;
+    }
+    .user-avatar {
+        position: absolute;
+    }
+    .name {
+        color: $color-text-primary;
+    }
+    .topic-content {
+        font-size: 0.8rem;
+        color: lighten($color-text-primary, 20%);
+        margin: 0.5rem 0;
+    }
+    .topic-comment {
+        position: static;
+        bottom: auto;
+        right: auto;
+        padding: 0.5rem 0 0;
+        border: none;
+        font-size: 0.8rem;
+        border-top: 1px solid $color-bd-gray;
+        li {
+            margin-bottom: 0.5rem;
+        }
+    }
+    .show-more-comment {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        color: $color-text-orange;
+    }
+    .comment-user {
+        color: $color-text-blue;
+        &.self {
+            color: $color-text-orange;
+        }
+    }
+
+    .reply-btn {
+        position: absolute;
+        top: 0.25rem;
+        right: 0.5rem;
+        border: 1px solid $color-bd-gray;
+        background: $color-bg-white;
+        padding: 0.1rem 0.5rem;
+        border-radius: 4px;
+    }
+}
+
+.topic-detail {
+    position: fixed;
+    z-index: 10;
+    .main {
+        padding-bottom: 3rem;
+    }
+    .main-topic {
+        background: $color-bg-white;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $color-bd-gray;
+        > p{
+            padding: 0 0.5rem;
+        }
+    }
+}
+
+.topic-detail, .activity-detail {
+    .tag {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: darken($color-bg-gray, 20%);
+        color: $color-text-white !important;
+        padding: 0.2rem 0.8rem;
+        border-radius: 3px;
+    }
+}
+
+.send-topic, .send-act-comment {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $color-bg-white;
+    border-top: 1px solid $color-bd-gray;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    input {
+        width: 100%;
+        border: 1px solid $color-bd-gray;
+        background: $color-bg-light-gray;
+        height: 2rem;
+        border-radius: 1rem;
+        padding: 0 0.5rem;
+    }
+    button {
+        position: absolute;
+        top: 0.9rem;
+        right: 0.5rem;
+        color: $color-text-orange;
+        background: none;
+        border: none;
+        font-size: 1rem;
+    }
+}
+
+.team-activity {
+    color: $color-text-minor;
+    line-height: 1.4;
+    p {
+        margin-bottom: 0.2rem;
+    }
+
+    .list-block {
+        position: relative;
+        overflow: hidden;
+        &:before {
+            content: '进行中';
+            position: absolute;
+            color: $color-text-white;
+            background: $color-bg-red;
+            top: -2.2rem;
+            left: -3.2rem;
+            padding: 3rem 2rem 0;
+            font-size: 0.68rem;
+            z-index: 1;
+            transform: rotate(-45deg);
+        }
+        &.outdate {
+            &:before {
+                content: '已过期';
+                background: darken($color-bg-gray, 20%);
+            }
+        }
+    }
+
+    .act-bg {
+        position: absolute;
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 5rem;
+        height: 5rem;
+        background-color: $color-bg-gray;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .act-info-right {
+        margin-left: 5.5rem;
+        min-height: 5.5rem;
+        .name {
+            font-size: 0.9rem;
+            padding-right: 3rem;
+            color: $color-text-orange;
+        }
+    }
+    .act-top {
+        background: $color-bg-white;
+        color: $color-text-orange;
+        border: 1px solid $color-bg-orange;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        position: absolute;
+        left: 0.5rem;
+        &.active {
+            background: $color-bg-orange;
+            color: $color-text-white;
+        }
+        img {
+            height: 0.8rem;
+        }
+    }
+    .act-holder-list {
+        li {
+            display: inline-block;
+            background: darken($color-bg-gray, 20%);
+            color: $color-text-white;
+            margin: 0 0.3rem 0.3rem 0;
+            padding: 0.1rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.68rem;
+        }
+    }
+    .act-num {
+        position: absolute;
+        top: 0.68rem;
+        right: 0.5rem;
+        span {
+            color: $color-text-orange;
+        }
+    }
+    .act-img {
+        li {
+            width: 3rem;
+            height: 3rem;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0 0.5rem 0.5rem 0;
+        }
+    }
+}
+
+.activity-detail {
+    z-index: 100;
+    .m {
+        font-size: 1rem;
+    }
+    .drop-down-menu {
+        position: absolute;
+        top: 54px;
+        right: 0.5rem;
+        border-radius: 5px;
+        padding: 10px 20px;
+        background: $color-bg-orange;
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 7px solid transparent;
+            display: block;
+            position: absolute;
+            top: -14px;
+            right: 0.5rem;
+            border-bottom-color: $color-bg-orange;
+        }
+        li {
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba($color-bd-white, 0.5);
+            line-height: 1.2;
+            &:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+        img {
+            height: 0.8rem;
+            margin-right: 0.3rem;
+        }
+    }
+    .main {
+        padding-bottom: 3rem;
+    }
+    .team-info {
+        position: relative;
+        .name {
+            color: $color-text-orange;
+        }
+        .time {
+            color: $color-text-minor;
+        }
+    }
+    .act-joined {
+        li {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        .user-avatar {
+            width:  2.5rem;
+            height: 2.5rem;
+        }
+    }
+    .act-img {
+        li {
+            display: inline-block;
+            margin-right: 0.5rem;
+            width: auto;
+            height: auto;
+        }
+        img {
+            width: 4rem;
+            height: 3rem;
+        }
+    }
+    .topic-reply {
+        background: $color-bg-white;
+    }
+    .join-act {
+        background: $color-bg-orange;
+        color: $color-text-white;
+        border: none;
+        width: 100%;
+        height: 2rem;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+}
+
+.my-team-main {
+    .part {
+        background: none;
+        padding: 0;
+        margin: 0;
+    }
+    .h-style-2 {
+        padding: 0.68rem 0;
+        border-bottom: 1px solid $color-bd-gray;
+    }
+    .w {
+        background: $color-bg-white;
+    }
+}
+
+
+.team-item {
+    position: relative;
+    border-bottom: 1px solid $color-bd-gray;
+    .user-avatar {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0.5rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 10px;
+    }
+    .team-info {
+        padding: 0.5rem 0.5rem 0.5rem 4rem;
+        img {
+            height: 0.7rem;
+            margin-right: 5px;
+        }
+    }
+    .team-name {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .team-num, .team-location {
+        background: $color-bg-green;
+        color: $color-text-white;
+        padding: 2px 5px;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+    .team-location {
+        background: $color-bg-red;
+    }
+    .team-last-act {
+        margin-top: 0.5rem;
+        color: $color-text-minor;
+    }
+}
+
+.edit-team, .create-activity {
+    
+    textarea {
+        border: none;
+        height: 7rem;
+        margin-top: 0.5rem;
+        width: 100%;
+        display: block;
+    }
+}
+
+.create-activity {
+    z-index: 100;
+    .list-item-content {
+        text-align: right;
+        input {
+            text-align: right;
+            width: 13rem;
+            border:1px solid $color-bd-light-gray;
+            height:1.3rem;
+            line-height:1.3rem;
+        }
+    }
+    .img {
+        .img-item {
+            position: relative;
+            display: inline-block;
+        }
+        .upload-btn {
+            border: none;
+            background: darken($color-bg-light-gray, 10%);
+            color: $color-text-white;
+            font-size: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 5px;
+            vertical-align: bottom;
+        }
+        .delete-btn {
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            background: $color-bg-orange;
+            color: $color-text-white;
+            border-radius: 50%;
+            border: none;
+            line-heigth: 1rem;
+            top: -0.5rem;
+            right: 0;
+        }
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+    .warn {
+        font-size: 0.68rem;
+        color: $color-text-red;
+        margin-top: 0.5rem;
+    }
+}
+
+.enroll-info {
+    input {
+        border: none;
+        text-align: right;
+    }
+    .enroll-action {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        background: $color-bg-white;
+        text-align: center;
+        button {
+            width: 8rem;
+            color: $color-text-white;
+            height: 2rem;
+            border: none;
+            background: $color-bg-orange;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin: 0 0.5rem;
+            &:first-child {
+                background: $color-bg-gray;
+            }
+        }
+    }
+    .enroll-money {
+        color: $color-text-orange;
+    }
+}
+
+.new-topic {
+    .p-f {
+        &.has-img {
+            bottom: 4.5rem;
+        }
+    }
+    .img {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        padding:0.5rem;
+        white-space: nowrap;
+        overflow: auto;
+        img {
+            width: 3rem;
+            height: 3rem;
+        }
+        span {
+            position: relative;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+        button {
+            background: $color-bg-orange;
+            color: $color-text-white;
+            width: 1rem;
+            height: 1rem;
+            padding: 0;
+            min-width: auto;
+            position: absolute;
+            right: -0.5rem;
+            top: -0.5rem;
+        }
+    }
+}
+
+.user-item {
+    .user-item-right {
+        display: inline-block;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+    }
+    .name {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+    .desc {
+        font-size: 0.7rem;
+        color: $color-text-minor;
+        img {
+            height: 0.6rem;
+            margin-left: 0.5rem;
+        }
+    }
+    .user-avatar {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.team-member {
+    padding-bottom: 3rem;
+    .team-setting-btn {
+        right: 0;
+        padding: 0 0.5rem;
+        height: 1.2rem;
+        background: $color-bg-orange;
+        border: none;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        color: $color-text-white;
+        img {
+            height: 0.8rem;
+            vertical-align: middle;
+            margin-right: 0.3rem;
+        }
+        span {
+            vertical-align: middle;
+        }
+    }
+    .team-intro {
+        color: #666; 
+    }
+    .team-num {
+        color: $color-text-minor;
+    }
+    .team-admin-icon{
+        display: inline-block;
+        background: $color-bg-red;
+        color: $color-text-white;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+}
+
+.edit-team {
+    .team-icon {
+        padding: 2rem 0.68rem;
+    }
+    input {
+        border: none;
+        background: none;
+        text-align: right;
+        min-width:13rem;
+        height:1.5rem;
+        line-height:1.5rem;
+    }
+    .team-bg {
+        text-align: center;
+        img {
+            max-height: 4rem;
+        }
+    }
+}
+
+.transfer-btn {
+    button {
+        border: none;
+        background: $color-bg-orange;
+        color: $color-text-white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+    }
+}
+
+.team-topic{
+    .topic-user{
+        padding: 0;
+        margin-bottom:10px;
+    }
+    .topic-title{
+        line-height: 1rem;
+        height: 1rem;
+        @include line-clamp(1);
+    }
+}
+
+.search-team {
+    .search-input {
+        input {
+            width: 15.5rem;
+        }
+        button {
+            width: 3rem;
+            border: none;
+            background: none;
+            color: $color-text-orange;
+            font-size: 1rem;
+        }
+    }
+    .search-filter {
+        padding: 0.68rem;
+        background: $color-bg-white;
+        border-top: 1px solid $color-bd-gray;
+        border-bottom: 1px solid $color-bd-gray;
+        select {
+            width: 5rem;
+        }
+    }
+    .diver {
+        margin: 0 10px;
+        color: $color-bg-gray;
+    }
+}

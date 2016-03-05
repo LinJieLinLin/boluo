@@ -1,0 +1,61 @@
+<section class="view-page recharge-page">
+    <header class="header">
+        <div class="back" ng-click="backPage()">
+            <img src="image/icon/user_details_back.png">
+        </div>
+        <div class="n">
+            充值
+        </div>
+        <div class="m" ui-sref="lookPrivilege">
+            查看特权
+        </div>
+    </header>
+    <main class="main">
+        <div class="activity-cover">
+            <div class="user-avatar-wrapper">
+                <avatar url="user.avatar"></avatar>
+                <img src="/image/icon/recharge_title_bg.png" class="user-avatar-deco" alt="">
+                <span class="user-avatar-deco-text">开通贵族</span>
+            </div>
+            <div class="activity-info">
+                <p>
+                    你现在的爵位是雕塑/二妹
+                    <img src="/image/icon/recharge_privilege04.png" class="privilege-ic" alt="">
+                </p>
+                <div class="activity-bar">
+                    <div class="bar-outer">
+                        <div class="bar-inner" ng-style="{width:'50%'}"></div>
+                    </div>
+                    <span>200</span> / <span>300</span>
+                </div>
+                <p>
+                    再充值XX元即可获得
+                    <img src="/image/icon/recharge_privilege04.png" class="privilege-ic" alt="">
+                    爵位（包月）
+                </p>
+            </div>
+        </div>
+        <div class="recharge-edit" ng-hide="true">
+            <input type="text" class="input" placeholder="请输入充值金额"><a href="" class="btn">充值</a>
+        </div>
+        <div class="list-block">
+            <ul ng-repeat="item in list" ng-click="selectItem(item)">
+                <li>
+                    <img ng-src="{{picRoot + item.pic}}" alt="">
+                </li>
+                <li>
+                    {{item.buy}}金菠萝
+                </li>
+                <li>
+                    <span>¥ {{item.price}}</span>
+                </li>
+                <li>
+                    <span class="ckb-ic" ng-class="{active: item.selected}"></span> 
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer class="now-recharge">
+        <a href="" ng-click="recharge()">立即充值</a>
+    </footer>
+</section>

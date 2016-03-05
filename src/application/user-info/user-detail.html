@@ -1,0 +1,164 @@
+<section class="view-page user-detail" ng-class="{ shrink : pcAct ,'others-detail': !isSelf}">
+    <main class="main user-detail-page user-setting" style="top: 0">
+        <header class="header" style="background: none;">
+            <div class="back" ng-click="backPage()">
+                <img src="image/icon/user_details_back.png">
+            </div>
+            <div class="n">
+            </div>
+            <div class="m" ng-show="isSelf">
+                <img ui-sref="user.edit({id: id})" class="edit-user-btn" src="/image/icon/user_details_edit.png" alt="">
+            </div>
+        </header>
+
+        <div class="cover" ng-style="coverBg">
+            <div class="user-detail">
+                <a ng-click="sendGift()" ng-class="{'gift-sending': showSendGift}" href="" class="send-gift" ng-show="!isSelf">
+                    <img src="/image/icon/other_details_gif_max_btn.png" alt="">
+                </a>
+                <div class="user-info">
+                    <p>
+                        <span class="user-age">
+                            <img ng-src="{{userInfo.sex == 'male' ? '/image/icon/user_details_boy.png' : '/image/icon/user_details_girl.png'}}" alt="">
+                            <span>{{userInfo.age}}</span>
+                        </span>
+                        <span class="user-name">{{userInfo.nickname}}</span>
+                    </p>
+                    <p class="user-signature">
+                        {{userInfo.signature}}
+                    </p>
+                </div>
+                <div class="user-social">
+                    <span class="user-follow" ng-click="goToPage('user.follow', true, {id: id, type: 'follow'})">
+                        <span class="num">{{userInfo.follow || 0}}</span><br>
+                        <span>关注</span>
+                        <span class="diver"></span>
+                    </span><span class="user-fans" ng-click="goToPage('user.follow', true, {id: id, type: 'fans'})">
+                        <span class="num">{{userInfo.fans || 0}}</span><br>
+                        <span>粉丝</span>
+                    </span>
+                </div>
+            </div>
+            <div class="user-avatar-wrapper">
+                <avatar url="userInfo.avatar"></avatar>
+                <img src="/image/icon/user_details_head_bg.png" class="user-avatar-deco" alt="">
+            </div>
+        </div>
+        <ul class="menu-list">
+            <li class="feature-disabled"><a href="">
+                    <span class="menu-name list-view"><span>菠萝球迷圈</span><span class="count list-item-content text-orange">{{userInfo.boloNum}}</span></span>
+                </a></li>
+            <li><a ng-click="goToPage('user.activity', true, {id: id})">
+                    <i class="icon"><img src="/image/icon/user_sidebar_active.png" alt=""></i>
+                    <span class="menu-name list-view"><span>活跃指数</span> <span class="text-orange">Lv{{userInfo.level || 0}}</span> <span class="count list-item-content">{{userInfo.activity || 0}}</span></span>
+                </a></li>
+            <!-- <li><a href="">
+                    <i class="icon"><img src="/image/icon/user_sidebar_star.png" alt=""></i>
+                    <span class="menu-name list-view"><span>守护星指数</span><span class="count list-item-content">{{userInfo.stars}}</span></span>
+                </a></li> -->
+            <li><a ng-click="goToPage('charm', true, {id: id})">
+                    <i class="icon"><img src="/image/icon/user_sidebar_charm.png" alt=""></i>
+                    <span class="menu-name list-view"><span>魅力指数</span><span class="count list-item-content">{{userInfo.charm || 0}}</span></span>
+                </a></li>
+            <li ng-show="isSelf"><a ng-click="goToPage('user.gift', true, {id: id, type: 'recieve'})">
+                    <i class="icon"><img src="/image/icon/user_details_getgif.png" alt=""></i>
+                    <span class="menu-name list-view"><span>收到的礼物</span><span class="count list-item-content">已收到 <span class="text-orange">{{userInfo.giftOwn || 0}}</span> 份</span></span>
+                </a>
+            </li>
+            <div ng-show="isSelf" class="user-gift-detail" ng-click="goToPage('user.gift', true, {id: id, type: 'recieve'})">
+                <ul class="recieve-gift">
+                    <img class="circle-bg" src="/image/icon/turntable.png" alt="">
+                    <li class="x-left y-2">
+                        <img ng-src="{{picRoot + userInfo.giftList[0].pic}}" alt="">
+                        <p>{{userInfo.giftList[0].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[0].num}}</p>
+                    </li>
+                    <li class="x-center y-1">
+                        <img ng-src="{{picRoot + userInfo.giftList[1].pic}}" alt="">
+                        <p>{{userInfo.giftList[1].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[1].num}}</p>
+                    </li>
+                    <li class="x-right y-2">
+                        <img ng-src="{{picRoot + userInfo.giftList[2].pic}}" alt="">
+                        <p>{{userInfo.giftList[2].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[2].num}}</p>
+                    </li>
+                    <li class="x-left y-3">
+                        <img ng-src="{{picRoot + userInfo.giftList[3].pic}}" alt="">
+                        <p>{{userInfo.giftList[3].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[3].num}}</p>
+                    </li>
+                    <li class="x-center y-4">
+                        <img ng-src="{{picRoot + userInfo.giftList[4].pic}}" alt="">
+                        <p>{{userInfo.giftList[4].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[4].num}}</p>
+                    </li>
+                    <li class="x-right y-3">
+                        <img ng-src="{{picRoot + userInfo.giftList[5].pic}}" alt="">
+                        <p>{{userInfo.giftList[5].name}}</p>
+                        <p class="gift-num">收到{{userInfo.giftList[5].num}}</p>
+                    </li>
+                    <li class="x-center y-center">
+                        <img src="/image/icon/gif_turntable_gif_icon.png" alt="">
+                        <p>其他</p>
+                        <p class="gift-num">{{userInfo.giftList[6].num}}</p>
+                    </li>
+                </ul>
+            </div>
+            <li ng-show="isSelf"><a ng-click="goToPage('user.gift', true, {id: id, type: 'own'})">
+                    <i class="icon"><img src="/image/icon/user_details_setgif.png" alt=""></i>
+                    <span class="menu-name list-view"><span>可送的礼物</span><span class="count list-item-content">{{user.giftBuy || 0}}</span></span>
+                </a></li>
+            <li ng-show="isSelf"><a href="">
+                    <i class="icon"><img src="/image/icon/user_details_bolo.png" alt=""></i>
+                    <span class="menu-name list-view"><span>金萝卜</span><span class="count list-item-content">{{user.boluo || 0.0}}</span></span>
+                </a></li>
+            <li ng-show="isSelf"><a href="">
+                    <i class="icon"><img src="/image/icon/user_details_beans.png" alt=""></i>
+                    <span class="menu-name list-view"><span>萝卜豆</span><span class="count list-item-content">{{user.bean || 0}}</span></span>
+                </a></li>
+        </ul>
+        <section class="list-block">
+            <div class="list-block-title">
+                喜欢的球队
+            </div>
+            <div class="list-view" ng-click="enterEdit('fav-team')">
+                <ul class="fav-team">
+                    <li class="user-setting-item" ng-repeat="team in userInfo.favTeam">{{team.name}}</li>
+                    <li ng-show="isSelf" class="user-setting-item">+</li>
+                </ul>
+                <button class="more" ng-show="isSelf">&gt;</button>
+            </div>
+        </section>
+        <section class="list-block">
+            <div class="list-block-title">
+                喜欢的球星
+            </div>
+            <div class="list-view" ng-click="enterEdit('fav-star')">
+                <ul class="fav-star">
+                    <li class="user-setting-item" ng-repeat="star in userInfo.favStar">{{star.name}}</li>
+                    <li ng-show="isSelf" class="user-setting-item">+</li>
+                </ul>
+                <button class="more" ng-show="isSelf">&gt;</button>
+            </div>
+        </section>
+        <section class="list-block" ng-show="isSelf">
+            <div class="list-block-title">
+            </div>
+            <div class="list-view">
+                我的账号
+                <span class="list-item-content">{{userInfo.nickname}}</span>
+            </div>
+            <!-- <div class="list-view">
+                我的二维码
+                <span class="list-item-content"><img class="qrcode" src="/image/icon/user_details_qrcode.png" alt=""></span>
+                <button class="more">&gt;</button>
+            </div> -->
+        </section>
+        <section class="user-action" ng-show="!isSelf">
+            <button ui-sref="user.addFriend({id: id, target: userInfo.id})">加好友</button>
+            <button ng-click="followUser()" ng-hide="userInfo.isFollowed">关注</button>
+        </section>
+    </main>
+</section>
+<div ui-view></div>
